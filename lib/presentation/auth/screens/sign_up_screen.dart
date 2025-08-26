@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movie_zone/common/helper/navigation/app_navigation.dart';
-import 'package:movie_zone/presentation/auth/screens/sign_up_screen.dart';
+import 'package:movie_zone/presentation/auth/screens/sign_in_screen.dart';
 import 'package:movie_zone/presentation/auth/widgets/custom_body_sign_in_and_sign_up_screen.dart';
 
 // ignore: must_be_immutable
-class SignInScreen extends StatelessWidget {
-  SignInScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({super.key});
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   @override
@@ -15,11 +15,11 @@ class SignInScreen extends StatelessWidget {
       body: CustomBodySignAndSignUpScreen(
         email: email,
         password: password,
-        headerAndButtonTitle: 'Sign In',
-        textSpan1: 'Don\'t you have an account?',
-        textSpan2: ' Sign Up',
+        headerAndButtonTitle: 'Sign Up',
+        textSpan1: 'Do you have an account?',
+        textSpan2: ' Sign In',
         textSpanOnTap: () {
-          AppNavigator.pushReplacement(context, SignUpScreen());
+          AppNavigator.pushReplacement(context, SignInScreen());
         },
       ),
     );
