@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_zone/core/configs/theme/app_theme.dart';
+import 'package:movie_zone/presentation/splash/cubit/splash_cubit.dart';
+import 'package:movie_zone/presentation/splash/screens/splash_screen.dart';
 
 void main() {
   runApp(const MovieZone());
@@ -14,10 +17,13 @@ class MovieZone extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Colors.transparent),
     );
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.appTheme,
-      home: Scaffold(),
+    return BlocProvider(
+      create: (context) => SplashCubit()..appStarted(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.appTheme,
+        home: SplashScreen(),
+      ),
     );
   }
 }
