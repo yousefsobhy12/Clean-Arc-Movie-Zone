@@ -9,6 +9,9 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
   CustomBodySignAndSignUpScreen({
     super.key,
     this.textSpanOnTap,
+    required this.onPressed,
+    required this.onSuccess,
+    required this.onFailure,
     required this.email,
     required this.password,
     required this.headerAndButtonTitle,
@@ -22,6 +25,9 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
   final String textSpan1;
   final String textSpan2;
   void Function()? textSpanOnTap;
+  Future<dynamic> Function() onPressed;
+  void Function() onSuccess;
+  dynamic Function(String) onFailure;
 
   @override
   Widget build(BuildContext context) {
@@ -82,9 +88,9 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
                       ReactiveButton(
                         title: headerAndButtonTitle,
                         activeColor: AppColors.primary,
-                        onPressed: () async {},
-                        onSuccess: () {},
-                        onFailure: (error) {},
+                        onPressed: onPressed,
+                        onSuccess: onSuccess,
+                        onFailure: onFailure,
                       ),
                       SizedBox(
                         height: MediaQuery.sizeOf(context).height * 0.22,

@@ -19,7 +19,7 @@ class AuthServiceImpl extends AuthService {
       );
       return Right(response.data);
     } on DioException catch (e) {
-      return Left(e.response!.data['message']);
+      return Left(e.response?.data?['message'] ?? 'Unknown error');
     }
   }
 }

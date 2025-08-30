@@ -6,21 +6,24 @@ import 'package:movie_zone/presentation/auth/widgets/custom_body_sign_in_and_sig
 // ignore: must_be_immutable
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: CustomBodySignAndSignUpScreen(
-        email: email,
-        password: password,
+        email: emailController,
+        password: passwordController,
         headerAndButtonTitle: 'Sign In',
         textSpan1: 'Don\'t you have an account?',
         textSpan2: ' Sign Up',
         textSpanOnTap: () {
           AppNavigator.pushReplacement(context, SignUpScreen());
         },
+        onPressed: () async {},
+        onSuccess: () {},
+        onFailure: (failure) {},
       ),
     );
   }
