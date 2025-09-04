@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:movie_zone/common/helper/message/display_message.dart';
 import 'package:movie_zone/common/helper/navigation/app_navigation.dart';
+import 'package:movie_zone/data/auth/models/signin_req_params.dart';
+import 'package:movie_zone/domain/auth/usecases/signin_usecase.dart';
 import 'package:movie_zone/presentation/auth/screens/sign_up_screen.dart';
 import 'package:movie_zone/presentation/auth/widgets/custom_body_sign_in_and_sign_up_screen.dart';
+import 'package:movie_zone/service_locator.dart';
 
 // ignore: must_be_immutable
 class SignInScreen extends StatelessWidget {
@@ -21,9 +25,18 @@ class SignInScreen extends StatelessWidget {
         textSpanOnTap: () {
           AppNavigator.pushReplacement(context, SignUpScreen());
         },
-        onPressed: () async {},
+        onPressed: () async {
+          await serviceLocator<SigninUsecase>().call(
+            SigninReqParams(
+              email: emailController.text,
+              password: passwordController.text,
+            ),
+          );
+        },
         onSuccess: () {},
-        onFailure: (failure) {},
+        onFailure: (error) {
+          DisplayMessage.errorMessage(error, context);
+        },
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:movie_zone/core/network/dio_client.dart';
 import 'package:movie_zone/data/auth/repositories/auth_repo_impl.dart';
 import 'package:movie_zone/data/auth/sources/auth_service.dart';
 import 'package:movie_zone/domain/auth/repositories/auth_repo.dart';
+import 'package:movie_zone/domain/auth/usecases/signin_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signup_usecase.dart';
 
 final serviceLocator = GetIt.instance;
@@ -12,11 +13,12 @@ void setupServiceLocator() {
   serviceLocator.registerSingleton<DioClient>(DioClient());
 
   // Services
-  serviceLocator.registerSingleton<AuthService>(AuthServiceImpl());
+  serviceLocator.registerSingleton<AuthApiService>(AuthApiServiceImpl());
 
   // Repositories
-  serviceLocator.registerSingleton<AuthRepo>(AuthRepoImpl());
+  // serviceLocator.registerSingleton<AuthRepo>(AuthRepoImpl());
 
   // Use Case
-  serviceLocator.registerSingleton<SignupUseCase>(SignupUseCase());
+  // serviceLocator.registerSingleton<SignupUseCase>(SignupUseCase());
+  serviceLocator.registerSingleton<SigninUsecase>(SigninUsecase());
 }

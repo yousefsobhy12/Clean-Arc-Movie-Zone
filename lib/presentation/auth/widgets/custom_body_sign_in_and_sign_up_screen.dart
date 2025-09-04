@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movie_zone/core/configs/assets/app_images.dart';
 import 'package:movie_zone/core/configs/theme/app_colors.dart';
 import 'package:movie_zone/presentation/auth/widgets/custom_text_form_field.dart';
-import 'package:reactive_button/reactive_button.dart';
 
 // ignore: must_be_immutable
 class CustomBodySignAndSignUpScreen extends StatelessWidget {
@@ -85,12 +84,12 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
                         controller: password,
                       ),
                       SizedBox(height: 50),
-                      ReactiveButton(
-                        title: headerAndButtonTitle,
-                        activeColor: AppColors.primary,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                        ),
                         onPressed: onPressed,
-                        onSuccess: onSuccess,
-                        onFailure: onFailure,
+                        child: Text(headerAndButtonTitle),
                       ),
                       SizedBox(
                         height: MediaQuery.sizeOf(context).height * 0.22,

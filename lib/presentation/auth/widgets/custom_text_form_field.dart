@@ -32,11 +32,11 @@ class CustomTextFormField extends StatelessWidget {
       ),
     );
   }
-}
 
-OutlineInputBorder outlineInputBorder({required Color borderColor}) {
-  return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(10),
-    borderSide: BorderSide(color: borderColor),
-  );
+  OutlineInputBorder outlineInputBorder({required Color borderColor}) {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide(color: borderColor),
+    );
+  }
 }

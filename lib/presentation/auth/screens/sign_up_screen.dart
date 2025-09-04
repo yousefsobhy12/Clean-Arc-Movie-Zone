@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movie_zone/common/helper/message/display_message.dart';
 import 'package:movie_zone/common/helper/navigation/app_navigation.dart';
 import 'package:movie_zone/data/auth/models/signup_req_params.dart';
+import 'package:movie_zone/data/auth/repositories/auth_repo_impl.dart';
+import 'package:movie_zone/data/auth/sources/auth_service.dart';
 import 'package:movie_zone/domain/auth/usecases/signup_usecase.dart';
 import 'package:movie_zone/presentation/auth/screens/sign_in_screen.dart';
 import 'package:movie_zone/presentation/auth/widgets/custom_body_sign_in_and_sign_up_screen.dart';
@@ -25,15 +28,25 @@ class SignUpScreen extends StatelessWidget {
           AppNavigator.pushReplacement(context, SignInScreen());
         },
         onPressed: () async {
-          await serviceLocator.get<SignupUseCase>().call(
+          SignupUseCase(
+            authRepo: AuthRepoImpl(authApiService: AuthApiServiceImpl()),
+          ).call(
             SignupReqParams(
               email: emailController.text,
               password: passwordController.text,
             ),
           );
+          // await serviceLocator<SignupUseCase>().call(
+          //   SignupReqParams(
+          //     email: emailController.text,
+          //     password: passwordController.text,
+          //   ),
+          // );
         },
         onSuccess: () {},
-        onFailure: (failure) {},
+        onFailure: (error) {
+          DisplayMessage.errorMessage(error, context);
+        },
       ),
     );
   }
