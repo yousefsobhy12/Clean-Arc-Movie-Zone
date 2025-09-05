@@ -10,15 +10,24 @@ final serviceLocator = GetIt.instance;
 
 void setupServiceLocator() {
   // Dio client
-  serviceLocator.registerSingleton<DioClient>(DioClient());
+  serviceLocator.registerLazySingleton<DioClient>(() => DioClient());
 
   // Services
-  serviceLocator.registerSingleton<AuthApiService>(AuthApiServiceImpl());
+  serviceLocator.registerLazySingleton<AuthApiService>(
+    () => AuthApiServiceImpl(),
+  );
 
   // Repositories
-  // serviceLocator.registerSingleton<AuthRepo>(AuthRepoImpl());
+  serviceLocator.registerLazySingleton<AuthRepo>(
+    () => AuthRepoImpl(authApiService: serviceLocator()),
+  );
 
-  // Use Case
-  // serviceLocator.registerSingleton<SignupUseCase>(SignupUseCase());
-  serviceLocator.registerSingleton<SigninUsecase>(SigninUsecase());
+  // Use Cases
+  serviceLocator.registerLazySingleton<SignupUseCase>(
+    () => SignupUseCase(authRepo: serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<SigninUsecase>(
+    () => SigninUsecase(authRepo: serviceLocator()),
+  );
 }
