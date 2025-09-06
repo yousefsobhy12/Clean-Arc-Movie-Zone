@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:movie_zone/core/constants/api_url.dart';
@@ -21,13 +19,10 @@ class AuthApiServiceImpl extends AuthApiService {
         ApiUrl.signupUrl,
         data: params.toMap(),
       );
-      log(response.data.toString());
       return Right(response.data);
     } on DioException catch (e) {
-      // Always return a string, never null
       final message =
           e.response?.data?['message']?.toString() ?? 'Unknown error';
-      log(message);
       return Left(message);
     }
   }
