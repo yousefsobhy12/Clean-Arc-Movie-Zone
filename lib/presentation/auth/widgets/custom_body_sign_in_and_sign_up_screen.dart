@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movie_zone/core/configs/assets/app_images.dart';
 import 'package:movie_zone/core/configs/theme/app_colors.dart';
 import 'package:movie_zone/presentation/auth/widgets/custom_text_form_field.dart';
-import 'package:reactive_button/reactive_button.dart';
 
 // ignore: must_be_immutable
 class CustomBodySignAndSignUpScreen extends StatelessWidget {
@@ -10,8 +9,6 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
     super.key,
     this.textSpanOnTap,
     required this.onPressed,
-    required this.onSuccess,
-    required this.onFailure,
     required this.email,
     required this.password,
     required this.headerAndButtonTitle,
@@ -25,9 +22,7 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
   final String textSpan1;
   final String textSpan2;
   void Function()? textSpanOnTap;
-  Future<dynamic> Function() onPressed;
-  void Function() onSuccess;
-  dynamic Function(String) onFailure;
+  void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -85,19 +80,12 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
                         controller: password,
                       ),
                       SizedBox(height: 50),
-                      // ElevatedButton(
-                      //   style: ElevatedButton.styleFrom(
-                      //     padding: EdgeInsets.symmetric(vertical: 20),
-                      //   ),
-                      //   onPressed: onPressed,
-                      //   child: Text(headerAndButtonTitle),
-                      // ),
-                      ReactiveButton(
-                        title: headerAndButtonTitle,
-                        activeColor: AppColors.primary,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                        ),
                         onPressed: onPressed,
-                        onSuccess: onSuccess,
-                        onFailure: onFailure,
+                        child: Text(headerAndButtonTitle),
                       ),
                       SizedBox(
                         height: MediaQuery.sizeOf(context).height * 0.22,

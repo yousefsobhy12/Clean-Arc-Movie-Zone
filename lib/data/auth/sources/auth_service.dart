@@ -7,13 +7,15 @@ import 'package:movie_zone/data/auth/models/signup_req_params.dart';
 import 'package:movie_zone/service_locator.dart';
 
 abstract class AuthApiService {
-  Future<Either<dynamic, dynamic>> signup(SignupReqParams params);
-  Future<Either<dynamic, dynamic>> signin(SigninReqParams params);
+  Future<Either<String, Map<String, dynamic>>> signup(SignupReqParams params);
+  Future<Either<String, Map<String, dynamic>>> signin(SigninReqParams params);
 }
 
 class AuthApiServiceImpl extends AuthApiService {
   @override
-  Future<Either<String, dynamic>> signup(SignupReqParams params) async {
+  Future<Either<String, Map<String, dynamic>>> signup(
+    SignupReqParams params,
+  ) async {
     try {
       var response = await serviceLocator<DioClient>().post(
         ApiUrl.signupUrl,
@@ -24,11 +26,15 @@ class AuthApiServiceImpl extends AuthApiService {
       final message =
           e.response?.data?['message']?.toString() ?? 'Unknown error';
       return Left(message);
+    } catch (e) {
+      return Left('Unexpected error: $e');
     }
   }
 
   @override
-  Future<Either<String, dynamic>> signin(SigninReqParams params) async {
+  Future<Either<String, Map<String, dynamic>>> signin(
+    SigninReqParams params,
+  ) async {
     try {
       var response = await serviceLocator<DioClient>().post(
         ApiUrl.signinUrl,
@@ -42,30 +48,3 @@ class AuthApiServiceImpl extends AuthApiService {
     }
   }
 }
-// class AuthApiServiceImpl extends AuthApiService {
-//   @override
-//   Future<Either<dynamic,dynamic>> signup(SignupReqParams params) async {
-//     try {
-//       var response = await serviceLocator<DioClient>().post(
-//         ApiUrl.signupUrl,
-//         data: params.toMap(),
-//       );
-//       return Right(response.data);
-//     } on DioException catch (e) {
-//       return Left(e.response?.data?['message'] ?? 'Unknown error');
-//     }
-//   }
-
-//   @override
-//   Future<Either<dynamic,dynamic>> signin(SigninReqParams params) async {
-//     try {
-//       var response = await serviceLocator<DioClient>().post(
-//         ApiUrl.signinUrl,
-//         data: params.toMap(),
-//       );
-//       return Right(response.data);
-//     } on DioException catch (e) {
-//       return Left(e.response?.data?['message'] ?? 'Unknown error');
-//     }
-//   }
-// }

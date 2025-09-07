@@ -4,7 +4,7 @@ class SignupReqParams {
 
   SignupReqParams({required this.email, required this.password});
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{'email': email, 'password': password};
+  Map<dynamic, dynamic> toMap() {
+    return <dynamic, dynamic>{'email': email, 'password': password};
   }
 }

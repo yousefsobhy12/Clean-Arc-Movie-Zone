@@ -10,12 +10,12 @@ class AuthRepoImpl extends AuthRepo {
 
   AuthRepoImpl({required this.authApiService});
   @override
-  Future<Either<dynamic, dynamic>> signup(SignupReqParams params) async {
+  Future<Either<String, Map<String, dynamic>>> signup(SignupReqParams params) async {
     return await serviceLocator.get<AuthApiService>().signup(params);
   }
 
   @override
-  Future<Either<dynamic, dynamic>> signin(SigninReqParams params) async {
+  Future<Either<String, Map<String, dynamic>>> signin(SigninReqParams params) async {
     return await serviceLocator.get<AuthApiService>().signin(params);
   }
 }

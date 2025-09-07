@@ -368,14 +368,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.5+1"
-  reactive_button:
-    dependency: "direct main"
-    description:
-      name: reactive_button
-      sha256: "5b407f065d83db079a182dc0968d2a085f9e071cdbc94d31b415277561f79b86"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.9"
   shared_preferences:
     dependency: "direct main"
     description:

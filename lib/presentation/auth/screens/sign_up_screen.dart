@@ -26,16 +26,14 @@ class SignUpScreen extends StatelessWidget {
           AppNavigator.pushReplacement(context, SignInScreen());
         },
         onPressed: () async {
-          await serviceLocator<SignupUseCase>().call(
+          final result = await serviceLocator<SignupUseCase>().call(
             SignupReqParams(
               email: emailController.text,
               password: passwordController.text,
             ),
           );
-        },
-        onSuccess: () {},
-        onFailure: (error) {
-          DisplayMessage.errorMessage(error, context);
+          // ignore: use_build_context_synchronously
+          DisplayMessage.handleAuthResult(isSignUp: true, result, context);
         },
       ),
     );
