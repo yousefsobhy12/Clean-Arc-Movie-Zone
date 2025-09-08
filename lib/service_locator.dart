@@ -3,6 +3,7 @@ import 'package:movie_zone/core/network/dio_client.dart';
 import 'package:movie_zone/data/auth/repositories/auth_repo_impl.dart';
 import 'package:movie_zone/data/auth/sources/auth_service.dart';
 import 'package:movie_zone/domain/auth/repositories/auth_repo.dart';
+import 'package:movie_zone/domain/auth/usecases/is_logged_in_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signin_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signup_usecase.dart';
 
@@ -30,4 +31,5 @@ void setupServiceLocator() {
   serviceLocator.registerLazySingleton<SigninUsecase>(
     () => SigninUsecase(authRepo: serviceLocator()),
   );
+  serviceLocator.registerSingleton<IsLoggedInUsecase>(IsLoggedInUsecase());
 }

@@ -27,7 +27,7 @@ class SignInScreen extends StatelessWidget {
         },
         onPressed: () async {
           final result = await serviceLocator<SigninUsecase>().call(
-            SigninReqParams(
+            params: SigninReqParams(
               email: emailController.text,
               password: passwordController.text,
             ),

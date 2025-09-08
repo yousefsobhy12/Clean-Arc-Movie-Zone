@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:movie_zone/core/prefs/app_prefs.dart';
 import 'package:movie_zone/data/auth/models/signin_req_params.dart';
 import 'package:movie_zone/data/auth/models/signup_req_params.dart';
 import 'package:movie_zone/data/auth/sources/auth_service.dart';
@@ -10,12 +11,44 @@ class AuthRepoImpl extends AuthRepo {
 
   AuthRepoImpl({required this.authApiService});
   @override
-  Future<Either<String, Map<String, dynamic>>> signup(SignupReqParams params) async {
-    return await serviceLocator.get<AuthApiService>().signup(params);
+  Future<Either<String, Map<String, dynamic>>> signup(
+    SignupReqParams params,
+  ) async {
+    var data = await serviceLocator.get<AuthApiService>().signup(params);
+    return data.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) async {
+        await AppPrefs.saveString('token', data['user']['token']);
+        return Right(data);
+      },
+    );
   }
 
   @override
-  Future<Either<String, Map<String, dynamic>>> signin(SigninReqParams params) async {
-    return await serviceLocator.get<AuthApiService>().signin(params);
+  Future<Either<String, Map<String, dynamic>>> signin(
+    SigninReqParams params,
+  ) async {
+    var data = await serviceLocator.get<AuthApiService>().signin(params);
+    return data.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) async {
+        await AppPrefs.saveString('token', data['user']['token']);
+        return Right(data);
+      },
+    );
+  }
+
+  @override
+  Future<bool> isLoggedIn() async {
+    var token = AppPrefs.getString('token');
+    if (token == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
