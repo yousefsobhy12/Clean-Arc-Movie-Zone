@@ -7,14 +7,14 @@ import 'package:movie_zone/domain/auth/repositories/auth_repo.dart';
 import 'package:movie_zone/service_locator.dart';
 
 class AuthRepoImpl extends AuthRepo {
-  final AuthApiService authApiService;
+  final AuthService authApiService;
 
   AuthRepoImpl({required this.authApiService});
   @override
   Future<Either<String, Map<String, dynamic>>> signup(
     SignupReqParams params,
   ) async {
-    var data = await serviceLocator.get<AuthApiService>().signup(params);
+    var data = await serviceLocator.get<AuthService>().signup(params);
     return data.fold(
       (error) {
         return Left(error);
@@ -30,7 +30,7 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<String, Map<String, dynamic>>> signin(
     SigninReqParams params,
   ) async {
-    var data = await serviceLocator.get<AuthApiService>().signin(params);
+    var data = await serviceLocator.get<AuthService>().signin(params);
     return data.fold(
       (error) {
         return Left(error);

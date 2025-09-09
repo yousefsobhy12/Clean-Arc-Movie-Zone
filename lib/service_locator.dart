@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:movie_zone/core/network/dio_client.dart';
 import 'package:movie_zone/data/auth/repositories/auth_repo_impl.dart';
 import 'package:movie_zone/data/auth/sources/auth_service.dart';
+import 'package:movie_zone/data/movie/sources/movie_service.dart';
 import 'package:movie_zone/domain/auth/repositories/auth_repo.dart';
 import 'package:movie_zone/domain/auth/usecases/is_logged_in_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signin_usecase.dart';
@@ -14,9 +15,8 @@ void setupServiceLocator() {
   serviceLocator.registerLazySingleton<DioClient>(() => DioClient());
 
   // Services
-  serviceLocator.registerLazySingleton<AuthApiService>(
-    () => AuthApiServiceImpl(),
-  );
+  serviceLocator.registerLazySingleton<AuthService>(() => AuthApiServiceImpl());
+  serviceLocator.registerSingleton<MovieService>(MovieServiceImpl());
 
   // Repositories
   serviceLocator.registerLazySingleton<AuthRepo>(

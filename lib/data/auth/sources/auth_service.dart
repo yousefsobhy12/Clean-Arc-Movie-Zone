@@ -6,12 +6,12 @@ import 'package:movie_zone/data/auth/models/signin_req_params.dart';
 import 'package:movie_zone/data/auth/models/signup_req_params.dart';
 import 'package:movie_zone/service_locator.dart';
 
-abstract class AuthApiService {
+abstract class AuthService {
   Future<Either<String, Map<String, dynamic>>> signup(SignupReqParams params);
   Future<Either<String, Map<String, dynamic>>> signin(SigninReqParams params);
 }
 
-class AuthApiServiceImpl extends AuthApiService {
+class AuthApiServiceImpl extends AuthService {
   @override
   Future<Either<String, Map<String, dynamic>>> signup(
     SignupReqParams params,
