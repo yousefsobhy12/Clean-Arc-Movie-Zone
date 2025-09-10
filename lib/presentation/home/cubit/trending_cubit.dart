@@ -6,7 +6,7 @@ import 'package:movie_zone/service_locator.dart';
 part 'trending_state.dart';
 
 class TrendingCubit extends Cubit<TrendingState> {
-  TrendingCubit() : super(TrendingInitial());
+  TrendingCubit() : super(TrendingMovieLoading());
 
   void getTrendingMovies() async {
     var returnedData = await serviceLocator<GetTrendingMoviesUseCase>().call();

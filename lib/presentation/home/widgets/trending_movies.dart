@@ -14,9 +14,11 @@ class TrendingMovies extends StatelessWidget {
       child: BlocBuilder<TrendingCubit, TrendingState>(
         builder: (context, state) {
           if (state is TrendingMovieLoading) {
-            return CircularProgressIndicator();
-          } else if (state is TrendingMovieLoaded) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (state is TrendingMovieLoaded) {
             return FanCarouselImageSlider.sliderType1(
+              initalPageIndex: 2,
               imagesLink: state.movies
                   .map(
                     (item) =>
@@ -29,11 +31,12 @@ class TrendingMovies extends StatelessWidget {
               sliderHeight: 400,
               showIndicator: true,
             );
-          } else if (state is TrendingMovieFailure) {
-            return Text(state.errorMessage);
-          } else {
-            return Text('Unexpected error');
           }
+          if (state is TrendingMovieFailure) {
+            return Center(child: Text(state.errorMessage));
+          }
+          return Container();
+
           // return Container();
         },
       ),
