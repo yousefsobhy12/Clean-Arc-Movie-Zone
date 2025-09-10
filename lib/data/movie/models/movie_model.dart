@@ -50,7 +50,7 @@ class MovieModel {
       popularity: json["popularity"],
       releaseDate: DateTime.tryParse(json["release_date"] ?? ""),
       video: json["video"],
-      voteAverage: json["vote_average"],
+      voteAverage: double.tryParse(json["vote_average"].toString()),
       voteCount: json["vote_count"],
     );
   }

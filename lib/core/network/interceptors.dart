@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
+import 'package:movie_zone/core/prefs/app_prefs.dart';
 
 /// This interceptor is used to show request and response logs
 class LoggerInterceptor extends Interceptor {
@@ -35,5 +36,14 @@ class LoggerInterceptor extends Interceptor {
       'Data: ${response.data}',
     ); // Debug log
     handler.next(response); // continue with the Response
+  }
+}
+
+class AuthorizationInterceptor extends Interceptor {
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    final token = AppPrefs.getString('token');
+    options.headers['Authorization'] = 'Bearer $token';
+    handler.next(options); // continue with the Request
   }
 }

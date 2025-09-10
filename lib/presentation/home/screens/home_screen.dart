@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movie_zone/common/widgets/app_bar/app_bar.dart';
 import 'package:movie_zone/core/configs/assets/app_vectors.dart';
+import 'package:movie_zone/presentation/home/widgets/trending_movies.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
           child: SvgPicture.asset(AppVectors.logo),
         ),
       ),
-      body: Center(child: Text('Home Screen')),
+      body: SingleChildScrollView(child: Column(children: [TrendingMovies()])),
     );
   }
 }
