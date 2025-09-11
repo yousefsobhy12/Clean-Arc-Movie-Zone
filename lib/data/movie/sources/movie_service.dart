@@ -6,6 +6,7 @@ import 'package:movie_zone/service_locator.dart';
 
 abstract class MovieService {
   Future<Either> getTrendingMovies();
+  Future<Either> getNowPlayingMovies();
 }
 
 class MovieServiceImpl extends MovieService {
@@ -13,6 +14,22 @@ class MovieServiceImpl extends MovieService {
   Future<Either> getTrendingMovies() async {
     try {
       var response = await serviceLocator<DioClient>().get(ApiUrl.trendingUrl);
+      return Right(response.data);
+    } on DioException catch (error) {
+      final message =
+          error.response?.data?['message']?.toString() ?? 'Unknown error';
+      return Left(message);
+    } catch (error) {
+      return Left('Unexpected error: $error');
+    }
+  }
+
+  @override
+  Future<Either> getNowPlayingMovies() async {
+    try {
+      var response = await serviceLocator<DioClient>().get(
+        ApiUrl.nowPlayingUrl,
+      );
       return Right(response.data);
     } on DioException catch (error) {
       final message =

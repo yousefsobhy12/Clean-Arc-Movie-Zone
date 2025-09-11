@@ -9,6 +9,7 @@ import 'package:movie_zone/domain/auth/usecases/is_logged_in_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signin_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signup_usecase.dart';
 import 'package:movie_zone/domain/movie/repositories/movie_repo.dart';
+import 'package:movie_zone/domain/movie/usecases/get_now_playing_movies.dart';
 import 'package:movie_zone/domain/movie/usecases/get_trending_movies.dart';
 
 final serviceLocator = GetIt.instance;
@@ -39,4 +40,5 @@ void setupServiceLocator() {
   serviceLocator.registerSingleton<GetTrendingMoviesUseCase>(
     GetTrendingMoviesUseCase(),
   );
+  serviceLocator.registerSingleton<GetNowPlayingMovies>(GetNowPlayingMovies());
 }

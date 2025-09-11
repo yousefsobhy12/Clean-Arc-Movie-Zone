@@ -8,4 +8,7 @@ class ApiUrl {
 
   // Trending Movies
   static const String trendingUrl = '${apiVersion}movie/trending';
+
+  // Now Playing Movies
+  static const String nowPlayingUrl = '${apiVersion}movie/nowplaying';
 }
