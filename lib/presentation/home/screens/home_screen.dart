@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movie_zone/common/widgets/app_bar/app_bar.dart';
 import 'package:movie_zone/core/configs/assets/app_vectors.dart';
+import 'package:movie_zone/presentation/home/widgets/category_title.dart';
+import 'package:movie_zone/presentation/home/widgets/now_playing_movies.dart';
 import 'package:movie_zone/presentation/home/widgets/trending_movies.dart';
-import 'package:movie_zone/presentation/home/widgets/trending_title.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,7 +19,15 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [TrendingTitle(), TrendingMovies()],
+          children: [
+            CategoryTitle(title: 'Trending 🔥'),
+            TrendingMovies(),
+            SizedBox(height: 16),
+            CategoryTitle(title: 'Now Playing'),
+            SizedBox(height: 16),
+            NowPlayingMovies(),
+            SizedBox(height: 16),
+          ],
         ),
       ),
     );
