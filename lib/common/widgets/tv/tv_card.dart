@@ -6,7 +6,7 @@ import '../../../core/configs/theme/app_colors.dart';
 
 class TvCard extends StatelessWidget {
   final TvEntity tvEntity;
-  const TvCard({ super.key, required this.tvEntity});
+  const TvCard({super.key, required this.tvEntity});
 
   @override
   Widget build(BuildContext context) {

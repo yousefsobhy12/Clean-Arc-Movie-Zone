@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:movie_zone/common/helper/mapper/movie_mapper.dart';
+import 'package:movie_zone/common/helper/mapper/trailer_mapper.dart';
+import 'package:movie_zone/core/models/trailer_model.dart';
 import 'package:movie_zone/data/movie/models/movie_model.dart';
 import 'package:movie_zone/data/movie/sources/movie_service.dart';
 import 'package:movie_zone/domain/movie/repositories/movie_repo.dart';
@@ -35,6 +37,21 @@ class MovieRepoImpl extends MovieRepo {
             .map((movie) => MovieMapper.toEntity(MovieModel.fromJson(movie)))
             .toList();
         return Right(movies);
+      },
+    );
+  }
+
+  @override
+  Future<Either> getMovieTrailer(int movieId) async {
+    var returnedData = await serviceLocator<MovieService>().getMovieTrailer(
+      movieId,
+    );
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        return Right(TrailerMapper.toEntity(TrailerModel.fromJson(data)));
       },
     );
   }

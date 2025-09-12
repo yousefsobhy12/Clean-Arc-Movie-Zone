@@ -11,6 +11,7 @@ import 'package:movie_zone/domain/auth/usecases/is_logged_in_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signin_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signup_usecase.dart';
 import 'package:movie_zone/domain/movie/repositories/movie_repo.dart';
+import 'package:movie_zone/domain/movie/usecases/get_movie_trailer.dart';
 import 'package:movie_zone/domain/movie/usecases/get_now_playing_movies.dart';
 import 'package:movie_zone/domain/movie/usecases/get_trending_movies.dart';
 import 'package:movie_zone/domain/tv/repositories/tv_repo.dart';
@@ -48,4 +49,5 @@ void setupServiceLocator() {
   );
   serviceLocator.registerSingleton<GetNowPlayingMovies>(GetNowPlayingMovies());
   serviceLocator.registerSingleton<GetPopularTvUsecase>(GetPopularTvUsecase());
+  serviceLocator.registerSingleton<GetMovieTrailer>(GetMovieTrailer());
 }

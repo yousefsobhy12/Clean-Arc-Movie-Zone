@@ -12,6 +12,9 @@ class ApiUrl {
   // Now Playing Movies
   static const String nowPlayingUrl = '${apiVersion}movie/nowplaying';
 
+  // Movies Trailer
+  static const String movieTrailer = '${apiVersion}movie/';
+
   // Popular TV shows
   static const String popularTvUrl = '${apiVersion}tv/popular';
 }

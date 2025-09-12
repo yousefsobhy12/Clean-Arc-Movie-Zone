@@ -7,6 +7,7 @@ import 'package:movie_zone/service_locator.dart';
 abstract class MovieService {
   Future<Either> getTrendingMovies();
   Future<Either> getNowPlayingMovies();
+  Future<Either> getMovieTrailer(int movieId);
 }
 
 class MovieServiceImpl extends MovieService {
@@ -37,6 +38,18 @@ class MovieServiceImpl extends MovieService {
       return Left(message);
     } catch (error) {
       return Left('Unexpected error: $error');
+    }
+  }
+
+  @override
+  Future<Either> getMovieTrailer(int movieId) async {
+    try {
+      var response = await serviceLocator<DioClient>().get(
+        '${ApiUrl.movieTrailer}$movieId/trailer',
+      );
+      return Right(response.data);
+    } on DioException catch (error) {
+      return Left(error.response!.data['message']);
     }
   }
 }
