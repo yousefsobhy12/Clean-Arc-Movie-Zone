@@ -51,7 +51,7 @@ class MovieRepoImpl extends MovieRepo {
         return Left(error);
       },
       (data) {
-        return Right(TrailerMapper.toEntity(TrailerModel.fromJson(data)));
+        return Right(TrailerMapper.toEntity(TrailerModel.fromJson(data['trailer'])));
       },
     );
   }
