@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_zone/common/cubit/generic_data_cubit.dart';
 import 'package:movie_zone/common/widgets/movie/movie_slider.dart';
-import 'package:movie_zone/presentation/home/cubits/trending_cubit/trending_cubit.dart';
+import 'package:movie_zone/domain/movie/entities/movie.dart';
+import 'package:movie_zone/domain/movie/usecases/get_trending_movies.dart';
+import 'package:movie_zone/service_locator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class TrendingMovies extends StatefulWidget {
@@ -17,19 +20,22 @@ class _TrendingMoviesState extends State<TrendingMovies> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TrendingCubit()..getTrendingMovies(),
-      child: BlocBuilder<TrendingCubit, TrendingState>(
+      create: (context) => GenericDataCubit()
+        ..getData<List<MovieEntity>>(
+          serviceLocator<GetTrendingMoviesUseCase>(),
+        ),
+      child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
-          if (state is TrendingMovieLoading) {
+          if (state is DataLoading) {
             return Center(child: CircularProgressIndicator());
           }
-          if (state is TrendingMovieLoaded) {
+          if (state is DataLoaded) {
             return Column(
               children: [
                 CarouselSlider.builder(
-                  itemCount: state.movies.length,
+                  itemCount: state.data.length,
                   itemBuilder: (context, index, realIndex) {
-                    return MovieSliderCard(movieEntity: state.movies[index]);
+                    return MovieSliderCard(movieEntity: state.data[index]);
                   },
                   options: CarouselOptions(
                     height: 370,
@@ -53,13 +59,13 @@ class _TrendingMoviesState extends State<TrendingMovies> {
                 ),
                 AnimatedSmoothIndicator(
                   activeIndex: activeIndex,
-                  count: state.movies.length,
+                  count: state.data.length,
                   effect: ExpandingDotsEffect(activeDotColor: Colors.red),
                 ),
               ],
             );
           }
-          if (state is TrendingMovieFailure) {
+          if (state is DataFailed) {
             return Center(child: Text(state.errorMessage));
           }
           return Container();
