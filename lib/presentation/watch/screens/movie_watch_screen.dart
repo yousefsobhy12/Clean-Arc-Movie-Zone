@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_zone/common/widgets/app_bar/app_bar.dart';
 import 'package:movie_zone/domain/movie/entities/movie.dart';
+import 'package:movie_zone/presentation/watch/widgets/recommended_movies.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_overview.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_player.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_release_date.dart';
@@ -34,6 +35,8 @@ class MovieWatchScreen extends StatelessWidget {
             ),
             SizedBox(height: 16),
             VideoOverview(overview: movieEntity.overview!),
+            SizedBox(height: 16),
+            RecommendedMovies(movieId: movieEntity.id!),
           ],
         ),
       ),
