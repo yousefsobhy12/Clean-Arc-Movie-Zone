@@ -74,4 +74,22 @@ class MovieRepoImpl extends MovieRepo {
       },
     );
   }
+
+  @override
+  Future<Either> getSimilarMovies(int movieId) async {
+    var returnedData = await serviceLocator<MovieService>().getSimilarMovies(
+      movieId,
+    );
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        var movies = List.from(data['content'])
+            .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
+            .toList();
+        return Right(movies);
+      },
+    );
+  }
 }
