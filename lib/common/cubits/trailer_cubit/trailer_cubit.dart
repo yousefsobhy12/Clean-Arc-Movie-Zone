@@ -1,16 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_zone/core/entities/trailer_entitiy.dart';
-import 'package:movie_zone/domain/movie/usecases/get_movie_trailer.dart';
-import 'package:movie_zone/service_locator.dart';
+import 'package:movie_zone/core/usecases/usecase.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
 part 'trailer_state.dart';
 
 class TrailerCubit extends Cubit<TrailerState> {
   TrailerCubit() : super(TrailerLoading());
-  void getMovieTrailer(int movieId) async {
-    var returnedData = await serviceLocator<GetMovieTrailer>().call(
-      params: movieId,
-    );
+
+  void getTrailer(int id, UseCase usecase) async {
+    var returnedData = await usecase.call(params: id);
     returnedData.fold(
       (error) {
         emit(TrailerFailed(errorMessage: error));

@@ -32,3 +32,9 @@ class MovieZone extends StatelessWidget {
     );
   }
 }
+
+// MaterialApp(
+//         debugShowCheckedModeBanner: false,
+//         theme: AppTheme.appTheme,
+//         home: SplashScreen(),
+//       ),

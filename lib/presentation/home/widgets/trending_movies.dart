@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_zone/common/cubit/generic_data_cubit.dart';
+import 'package:movie_zone/common/cubits/generic_data_cubit/generic_data_cubit.dart';
 import 'package:movie_zone/common/widgets/movie/movie_slider.dart';
 import 'package:movie_zone/domain/movie/entities/movie.dart';
 import 'package:movie_zone/domain/movie/usecases/get_trending_movies.dart';

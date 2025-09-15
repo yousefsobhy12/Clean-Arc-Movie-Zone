@@ -34,7 +34,7 @@ class TvRepoImpl extends TvRepo {
       (data) {
         var tvShows = List.from(
           data['content'],
-        ).map((item) => TvMapper.toEntity(TvModel.fromJson(item)));
+        ).map((item) => TvMapper.toEntity(TvModel.fromJson(item))).toList();
         return Right(tvShows);
       },
     );
@@ -52,7 +52,7 @@ class TvRepoImpl extends TvRepo {
       (data) {
         var tvShows = List.from(
           data['content'],
-        ).map((item) => TvMapper.toEntity(TvModel.fromJson(item)));
+        ).map((item) => TvMapper.toEntity(TvModel.fromJson(item))).toList();
         return Right(tvShows);
       },
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_zone/common/cubit/generic_data_cubit.dart';
+import 'package:movie_zone/common/cubits/generic_data_cubit/generic_data_cubit.dart';
 import 'package:movie_zone/common/widgets/movie/movie_card.dart';
 import 'package:movie_zone/domain/movie/entities/movie.dart';
 import 'package:movie_zone/domain/movie/usecases/get_similar_movies.dart';

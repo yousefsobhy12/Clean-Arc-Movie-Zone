@@ -21,7 +21,7 @@ class MovieWatchScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            VideoPlayerWidget(movieId: movieEntity.id!),
+            VideoPlayerWidget(id: movieEntity.id!),
             SizedBox(height: 16),
             VideoTitle(title: movieEntity.title!),
             SizedBox(height: 6),
