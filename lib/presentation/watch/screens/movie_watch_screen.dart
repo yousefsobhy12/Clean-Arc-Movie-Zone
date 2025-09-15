@@ -4,7 +4,7 @@ import 'package:movie_zone/domain/movie/entities/movie.dart';
 import 'package:movie_zone/presentation/watch/widgets/recommended_movies.dart';
 import 'package:movie_zone/presentation/watch/widgets/similar_movies.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_overview.dart';
-import 'package:movie_zone/presentation/watch/widgets/video_player.dart';
+import 'package:movie_zone/presentation/watch/widgets/movies_trailer.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_release_date.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_title.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_vote_avg.dart';
@@ -21,7 +21,7 @@ class MovieWatchScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            VideoPlayerWidget(id: movieEntity.id!),
+            MoviesTrailerWidget(id: movieEntity.id!),
             SizedBox(height: 16),
             VideoTitle(title: movieEntity.title!),
             SizedBox(height: 6),

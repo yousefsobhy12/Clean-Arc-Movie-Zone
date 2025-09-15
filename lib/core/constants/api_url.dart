@@ -14,6 +14,7 @@ class ApiUrl {
 
   // For Movies Trailer
   static const String movieUrl = '${apiVersion}movie/';
+  static const String tvShowUrl = '${apiVersion}tv/';
 
   // Popular TV shows
   static const String popularTvUrl = '${apiVersion}tv/popular';

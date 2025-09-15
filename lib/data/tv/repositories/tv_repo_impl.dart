@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:movie_zone/common/helper/mapper/trailer_mapper.dart';
 import 'package:movie_zone/common/helper/mapper/tv_mapper.dart';
+import 'package:movie_zone/core/models/trailer_model.dart';
 import 'package:movie_zone/data/tv/models/tv_model.dart';
 import 'package:movie_zone/data/tv/sources/tv_service.dart';
 import 'package:movie_zone/domain/tv/repositories/tv_repo.dart';
@@ -54,6 +56,23 @@ class TvRepoImpl extends TvRepo {
           data['content'],
         ).map((item) => TvMapper.toEntity(TvModel.fromJson(item))).toList();
         return Right(tvShows);
+      },
+    );
+  }
+
+  @override
+  Future<Either> getTVShowTrailer(int tvShowId) async {
+    var returnedData = await serviceLocator<TvService>().getTVShowTrailer(
+      tvShowId,
+    );
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        return Right(
+          TrailerMapper.toEntity(TrailerModel.fromJson(data['trailers'][0])),
+        );
       },
     );
   }

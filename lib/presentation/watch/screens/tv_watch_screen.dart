@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_zone/common/widgets/app_bar/app_bar.dart';
 import 'package:movie_zone/domain/tv/entities/tv_entity.dart';
 import 'package:movie_zone/presentation/watch/widgets/recommended_tv_shows.dart';
+import 'package:movie_zone/presentation/watch/widgets/tv_shows_trailer.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_overview.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_title.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_vote_avg.dart';
@@ -16,8 +17,9 @@ class TvWatchScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // VideoPlayerWidget(id: tvEntity.id!),
+            TvShowsTrailer(id: tvEntity.id!),
             SizedBox(height: 16),
             VideoTitle(title: tvEntity.name!),
             SizedBox(height: 6),
