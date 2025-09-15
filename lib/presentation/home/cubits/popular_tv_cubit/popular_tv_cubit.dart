@@ -8,7 +8,7 @@ part 'popular_tv_state.dart';
 class PopularTvCubit extends Cubit<PopularTvState> {
   PopularTvCubit() : super(PopularTvLoading());
   void getPopularTv() async {
-    var returnedData = await serviceLocator<GetPopularTvUsecase>().call();
+    var returnedData = await serviceLocator<GetPopularTvShowsUsecase>().call();
     returnedData.fold(
       (error) {
         emit(PopularTvFailure(errorMessage: error));

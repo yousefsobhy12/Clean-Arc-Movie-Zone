@@ -3,9 +3,9 @@ import 'package:movie_zone/core/usecases/usecase.dart';
 import 'package:movie_zone/domain/tv/repositories/tv_repo.dart';
 import 'package:movie_zone/service_locator.dart';
 
-class GetPopularTvShowsUsecase extends UseCase<Either, dynamic> {
+class GetSimilarTvShowsUsecase extends UseCase<Either, int> {
   @override
-  Future<Either> call({params}) {
-    return serviceLocator<TvRepo>().getPopularTvShows();
+  Future<Either> call({int? params}) async {
+    return await serviceLocator<TvRepo>().getSimilarTvShows(params!);
   }
 }

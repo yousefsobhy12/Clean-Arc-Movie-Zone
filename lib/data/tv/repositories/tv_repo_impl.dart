@@ -7,8 +7,8 @@ import 'package:movie_zone/service_locator.dart';
 
 class TvRepoImpl extends TvRepo {
   @override
-  Future<Either> getPopularTv() async {
-    var returnedData = await serviceLocator<TvService>().getPopularTv();
+  Future<Either> getPopularTvShows() async {
+    var returnedData = await serviceLocator<TvService>().getPopularTvShows();
     return returnedData.fold(
       (error) {
         return Left(error);
@@ -18,6 +18,42 @@ class TvRepoImpl extends TvRepo {
           data['content'],
         ).map((item) => TvMapper.toEntity(TvModel.fromJson(item))).toList();
         return Right(popularTv);
+      },
+    );
+  }
+
+  @override
+  Future<Either> getRecommendedTvShows(int tvShowId) async {
+    var returnedData = await serviceLocator<TvService>().getRecommendedTvShows(
+      tvShowId,
+    );
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        var tvShows = List.from(
+          data['content'],
+        ).map((item) => TvMapper.toEntity(TvModel.fromJson(item)));
+        return Right(tvShows);
+      },
+    );
+  }
+
+  @override
+  Future<Either> getSimilarTvShows(int tvShowId) async {
+    var returnedData = await serviceLocator<TvService>().getSimilarTvShows(
+      tvShowId,
+    );
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        var tvShows = List.from(
+          data['content'],
+        ).map((item) => TvMapper.toEntity(TvModel.fromJson(item)));
+        return Right(tvShows);
       },
     );
   }

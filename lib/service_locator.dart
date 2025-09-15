@@ -17,6 +17,8 @@ import 'package:movie_zone/domain/movie/usecases/get_recommended_movies.dart';
 import 'package:movie_zone/domain/movie/usecases/get_similar_movies.dart';
 import 'package:movie_zone/domain/movie/usecases/get_trending_movies.dart';
 import 'package:movie_zone/domain/tv/repositories/tv_repo.dart';
+import 'package:movie_zone/domain/tv/usecases/get_recommended_tv_shows_usecase.dart';
+import 'package:movie_zone/domain/tv/usecases/get_similar_tv_shows_usecase.dart';
 import 'package:movie_zone/domain/tv/usecases/tv_usecase.dart';
 
 final serviceLocator = GetIt.instance;
@@ -50,10 +52,18 @@ void setupServiceLocator() {
     GetTrendingMoviesUseCase(),
   );
   serviceLocator.registerSingleton<GetNowPlayingMovies>(GetNowPlayingMovies());
-  serviceLocator.registerSingleton<GetPopularTvUsecase>(GetPopularTvUsecase());
+  serviceLocator.registerSingleton<GetPopularTvShowsUsecase>(
+    GetPopularTvShowsUsecase(),
+  );
   serviceLocator.registerSingleton<GetMovieTrailer>(GetMovieTrailer());
   serviceLocator.registerSingleton<GetRecommendedMovies>(
     GetRecommendedMovies(),
   );
   serviceLocator.registerSingleton<GetSimilarMovies>(GetSimilarMovies());
+  serviceLocator.registerSingleton<GetRecommendedTvShowsUsecase>(
+    GetRecommendedTvShowsUsecase(),
+  );
+  serviceLocator.registerSingleton<GetSimilarTvShowsUsecase>(
+    GetSimilarTvShowsUsecase(),
+  );
 }
