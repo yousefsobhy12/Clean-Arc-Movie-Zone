@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_zone/common/widgets/app_bar/app_bar.dart';
 import 'package:movie_zone/domain/tv/entities/tv_entity.dart';
 import 'package:movie_zone/presentation/watch/widgets/recommended_tv_shows.dart';
+import 'package:movie_zone/presentation/watch/widgets/similar_tv_shows.dart';
 import 'package:movie_zone/presentation/watch/widgets/tv_shows_trailer.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_overview.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_title.dart';
@@ -28,9 +29,9 @@ class TvWatchScreen extends StatelessWidget {
             VideoOverview(overview: tvEntity.overview!),
             SizedBox(height: 16),
             RecommendedTvShows(tvEntityId: tvEntity.id!),
-            // SizedBox(height: 16),
-            // SimilarMovies(movieId: tvEntity.id!),
-            // SizedBox(height: 16),
+            SizedBox(height: 16),
+            SimilarTvShows(tvShowId: tvEntity.id!),
+            SizedBox(height: 16),
           ],
         ),
       ),

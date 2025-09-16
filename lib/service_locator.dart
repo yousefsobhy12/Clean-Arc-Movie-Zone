@@ -62,7 +62,9 @@ void setupServiceLocator() {
   serviceLocator.registerSingleton<GetRecommendedMovies>(
     GetRecommendedMovies(),
   );
-  serviceLocator.registerSingleton<GetSimilarMovies>(GetSimilarMovies());
+  serviceLocator.registerSingleton<GetSimilarMoviesUsecase>(
+    GetSimilarMoviesUsecase(),
+  );
   serviceLocator.registerSingleton<GetRecommendedTvShowsUsecase>(
     GetRecommendedTvShowsUsecase(),
   );
