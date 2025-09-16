@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:movie_zone/common/helper/mapper/keywords_mapper.dart';
 import 'package:movie_zone/common/helper/mapper/trailer_mapper.dart';
 import 'package:movie_zone/common/helper/mapper/tv_mapper.dart';
+import 'package:movie_zone/core/models/keywords.dart';
 import 'package:movie_zone/core/models/trailer_model.dart';
 import 'package:movie_zone/data/tv/models/tv_model.dart';
 import 'package:movie_zone/data/tv/sources/tv_service.dart';
@@ -73,6 +75,26 @@ class TvRepoImpl extends TvRepo {
         return Right(
           TrailerMapper.toEntity(TrailerModel.fromJson(data['trailers'][0])),
         );
+      },
+    );
+  }
+
+  @override
+  Future<Either> getTvShowKeywords(int tvShowId) async {
+    var returnedData = await serviceLocator<TvService>().getTvShowKeywords(
+      tvShowId,
+    );
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        var keywords = List.from(data['content'])
+            .map(
+              (item) => KeywordsMapper.toEntity(KeywordsModel.fromJson(item)),
+            )
+            .toList();
+        return Right(keywords);
       },
     );
   }

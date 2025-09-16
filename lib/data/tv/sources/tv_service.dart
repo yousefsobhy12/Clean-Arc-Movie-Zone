@@ -7,9 +7,9 @@ import 'package:movie_zone/service_locator.dart';
 abstract class TvService {
   Future<Either> getPopularTvShows();
   Future<Either> getTVShowTrailer(int tvShowId);
-
   Future<Either> getRecommendedTvShows(int tvShowId);
   Future<Either> getSimilarTvShows(int tvShowId);
+  Future<Either> getTvShowKeywords(int tvShowId);
 }
 
 class TvServiceImpl extends TvService {
@@ -52,6 +52,18 @@ class TvServiceImpl extends TvService {
     try {
       var response = await serviceLocator<DioClient>().get(
         '${ApiUrl.tvShows}$tvShowId/similar',
+      );
+      return Right(response.data);
+    } on DioException catch (error) {
+      return Left(error.response!.data['message']);
+    }
+  }
+
+  @override
+  Future<Either> getTvShowKeywords(int tvShowId) async {
+    try {
+      var response = await serviceLocator<DioClient>().get(
+        '${ApiUrl.tvShows}$tvShowId/keywords',
       );
       return Right(response.data);
     } on DioException catch (error) {
