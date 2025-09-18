@@ -1,3 +1,5 @@
+import 'package:movie_zone/core/configs/assets/app_gifs.dart';
+
 class TvModel {
   TvModel({
     required this.adult,
@@ -25,7 +27,7 @@ class TvModel {
   final String? originalName;
   final String? overview;
   final double? popularity;
-  final String? posterPath;
+  final String posterPath;
   final DateTime? firstAirDate;
   final String? name;
   final double? voteAverage;
@@ -46,7 +48,7 @@ class TvModel {
       originalName: json["original_name"],
       overview: json["overview"],
       popularity: json["popularity"],
-      posterPath: json["poster_path"],
+      posterPath: json["poster_path"] ?? AppGifs.cinema,
       firstAirDate: DateTime.tryParse(json["first_air_date"] ?? ""),
       name: json["name"],
       voteAverage: double.tryParse(json["vote_average"].toString()),

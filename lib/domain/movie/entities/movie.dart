@@ -23,7 +23,7 @@ class MovieEntity {
   final String? title;
   final String? originalTitle;
   final String? overview;
-  final String? posterPath;
+  final String posterPath;
   final String? mediaType;
   final String? originalLanguage;
   final List<int> genreIds;

@@ -21,7 +21,7 @@ class MovieSliderCard extends StatelessWidget {
           image: DecorationImage(
             fit: BoxFit.cover,
             image: NetworkImage(
-              AppImages.movieImageBasePath + movieEntity.posterPath.toString(),
+              AppImages.posterBasePath + movieEntity.posterPath.toString(),
             ),
           ),
         ),

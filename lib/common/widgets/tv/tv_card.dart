@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_zone/common/helper/navigation/app_navigation.dart';
+import 'package:movie_zone/core/configs/assets/app_gifs.dart';
 import 'package:movie_zone/core/configs/assets/app_images.dart';
 import 'package:movie_zone/domain/tv/entities/tv_entity.dart';
 import 'package:movie_zone/presentation/watch/screens/tv_watch_screen.dart';
@@ -28,17 +30,28 @@ class TvCard extends StatelessWidget {
           children: [
             Expanded(
               flex: 4,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage(
-                      AppImages.movieImageBasePath + tvEntity.posterPath!,
+              child: CachedNetworkImage(
+                imageUrl: AppImages.posterBasePath + tvEntity.posterPath,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: imageProvider,
                     ),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  borderRadius: BorderRadius.circular(8),
                 ),
+                placeholder: (context, url) => Center(
+                  child: SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: Image.asset(AppGifs.cinema),
+                  ),
+                ),
+
+                errorWidget: (context, url, error) =>
+                    Center(child: Icon(Icons.error)),
               ),
             ),
             Expanded(

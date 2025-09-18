@@ -1,3 +1,5 @@
+import 'package:movie_zone/core/configs/assets/app_gifs.dart';
+
 class MovieModel {
   MovieModel({
     required this.adult,
@@ -23,7 +25,7 @@ class MovieModel {
   final String? title;
   final String? originalTitle;
   final String? overview;
-  final String? posterPath;
+  final String posterPath;
   final String? mediaType;
   final String? originalLanguage;
   final List<int> genreIds;
@@ -41,7 +43,7 @@ class MovieModel {
       title: json["title"],
       originalTitle: json["original_title"],
       overview: json["overview"],
-      posterPath: json["poster_path"],
+      posterPath: json["poster_path"] ?? AppGifs.cinema,
       mediaType: json["media_type"],
       originalLanguage: json["original_language"],
       genreIds: json["genre_ids"] == null
