@@ -19,13 +19,15 @@ class TvWatchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BasicAppbar(action: IconButton(
+      appBar: BasicAppbar(
+        action: IconButton(
           onPressed: () {
             AppNavigator.pushReplacement(context, HomeScreen());
           },
           // ignore: deprecated_member_use
           icon: SvgPicture.asset(AppVectors.homeIcon, color: Colors.grey),
-        ),),
+        ),
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
