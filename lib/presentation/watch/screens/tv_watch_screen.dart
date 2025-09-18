@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:movie_zone/common/helper/navigation/app_navigation.dart';
 import 'package:movie_zone/common/widgets/app_bar/app_bar.dart';
+import 'package:movie_zone/core/configs/assets/app_vectors.dart';
 import 'package:movie_zone/domain/tv/entities/tv_entity.dart';
+import 'package:movie_zone/presentation/home/screens/home_screen.dart';
 import 'package:movie_zone/presentation/watch/widgets/recommended_tv_shows.dart';
 import 'package:movie_zone/presentation/watch/widgets/similar_tv_shows.dart';
 import 'package:movie_zone/presentation/watch/widgets/tv_show_keywords.dart';
@@ -15,7 +19,13 @@ class TvWatchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BasicAppbar(),
+      appBar: BasicAppbar(action: IconButton(
+          onPressed: () {
+            AppNavigator.pushReplacement(context, HomeScreen());
+          },
+          // ignore: deprecated_member_use
+          icon: SvgPicture.asset(AppVectors.homeIcon, color: Colors.grey),
+        ),),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(

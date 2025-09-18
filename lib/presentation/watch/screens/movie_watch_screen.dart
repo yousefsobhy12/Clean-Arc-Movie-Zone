@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:movie_zone/common/helper/navigation/app_navigation.dart';
 import 'package:movie_zone/common/widgets/app_bar/app_bar.dart';
+import 'package:movie_zone/core/configs/assets/app_vectors.dart';
 import 'package:movie_zone/domain/movie/entities/movie.dart';
+import 'package:movie_zone/presentation/home/screens/home_screen.dart';
 import 'package:movie_zone/presentation/watch/widgets/recommended_movies.dart';
 import 'package:movie_zone/presentation/watch/widgets/similar_movies.dart';
 import 'package:movie_zone/presentation/watch/widgets/video_overview.dart';
@@ -15,7 +19,16 @@ class MovieWatchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BasicAppbar(hideBack: false),
+      appBar: BasicAppbar(
+        hideBack: false,
+        action: IconButton(
+          onPressed: () {
+            AppNavigator.pushReplacement(context, HomeScreen());
+          },
+          // ignore: deprecated_member_use
+          icon: SvgPicture.asset(AppVectors.homeIcon, color: Colors.grey),
+        ),
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
