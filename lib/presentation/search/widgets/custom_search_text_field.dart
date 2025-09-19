@@ -5,12 +5,10 @@ class CustomSearchTextField extends StatelessWidget {
   CustomSearchTextField({
     super.key,
     required this.hintText,
-    // required this.title,
     this.suffixIcon,
     required this.controller,
     this.validator,
   });
-  // final String title;
   final String hintText;
   IconButton? suffixIcon;
   final TextEditingController controller;
@@ -18,9 +16,8 @@ class CustomSearchTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return TextField(
       controller: controller,
-      validator: validator,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
