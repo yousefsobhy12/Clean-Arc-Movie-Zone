@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-enum SelectedOption { movie, tv }
+enum SearchType { movie, tv }
 
-class SelectedOptionCubit extends Cubit<SelectedOption> {
-  SelectedOptionCubit() : super(SelectedOption.movie);
+class SelectedOptionCubit extends Cubit<SearchType> {
+  SelectedOptionCubit() : super(SearchType.movie);
 
-  void selectMovie() => emit(SelectedOption.movie);
-  void selectTv() => emit(SelectedOption.tv);
+  void selectMovie() => emit(SearchType.movie);
+  void selectTv() => emit(SearchType.tv);
 }

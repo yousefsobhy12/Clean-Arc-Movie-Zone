@@ -92,4 +92,20 @@ class MovieRepoImpl extends MovieRepo {
       },
     );
   }
+
+  @override
+  Future<Either> searchMovies(String query) async {
+    var returnedData = await serviceLocator<MovieService>().searchMovies(query);
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        var movies = List.from(data['content'])
+            .map((item) => MovieMapper.toEntity(MovieModel.fromJson(item)))
+            .toList();
+        return Right(movies);
+      },
+    );
+  }
 }

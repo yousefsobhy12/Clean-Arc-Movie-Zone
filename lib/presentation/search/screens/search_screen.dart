@@ -15,7 +15,7 @@ class SearchScreen extends StatelessWidget {
       appBar: BasicAppbar(hideBack: false),
       body: MultiBlocProvider(
         providers: [BlocProvider(create: (context) => SelectedOptionCubit())],
-        child: BlocBuilder<SelectedOptionCubit, SelectedOption>(
+        child: BlocBuilder<SelectedOptionCubit, SearchType>(
           builder: (context, state) {
             final option = context.read<SelectedOptionCubit>();
             return Padding(
@@ -33,14 +33,14 @@ class SearchScreen extends StatelessWidget {
                     children: [
                       SelectableOption(
                         title: 'Movie',
-                        isSelected: option.state == SelectedOption.movie,
+                        isSelected: option.state == SearchType.movie,
                         onTap: () {
                           option.selectMovie();
                         },
                       ),
                       SelectableOption(
                         title: 'TV',
-                        isSelected: option.state == SelectedOption.tv,
+                        isSelected: option.state == SearchType.tv,
                         onTap: () {
                           option.selectTv();
                         },

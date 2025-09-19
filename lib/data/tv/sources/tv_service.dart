@@ -10,6 +10,7 @@ abstract class TvService {
   Future<Either> getRecommendedTvShows(int tvShowId);
   Future<Either> getSimilarTvShows(int tvShowId);
   Future<Either> getTvShowKeywords(int tvShowId);
+  Future<Either> searchTVShows(String query);
 }
 
 class TvServiceImpl extends TvService {
@@ -68,6 +69,18 @@ class TvServiceImpl extends TvService {
       return Right(response.data);
     } on DioException catch (error) {
       return Left(error.response!.data['message']);
+    }
+  }
+
+  @override
+  Future<Either> searchTVShows(String query) async {
+    try {
+      var response = await serviceLocator<DioClient>().get(
+        '${ApiUrl.search}tv/$query',
+      );
+      return Right(response.data);
+    } on DioException catch (error) {
+      return Left(error.response!.data['content']);
     }
   }
 }

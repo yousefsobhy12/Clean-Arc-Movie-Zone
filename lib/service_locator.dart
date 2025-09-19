@@ -16,11 +16,13 @@ import 'package:movie_zone/domain/movie/usecases/get_now_playing_movies.dart';
 import 'package:movie_zone/domain/movie/usecases/get_recommended_movies.dart';
 import 'package:movie_zone/domain/movie/usecases/get_similar_movies.dart';
 import 'package:movie_zone/domain/movie/usecases/get_trending_movies.dart';
+import 'package:movie_zone/domain/movie/usecases/search_movies_usecase.dart';
 import 'package:movie_zone/domain/tv/repositories/tv_repo.dart';
 import 'package:movie_zone/domain/tv/usecases/get_recommended_tv_shows_usecase.dart';
 import 'package:movie_zone/domain/tv/usecases/get_similar_tv_shows_usecase.dart';
 import 'package:movie_zone/domain/tv/usecases/get_tv_show_keywords_usecase.dart';
 import 'package:movie_zone/domain/tv/usecases/get_tv_show_trailer_usecase.dart';
+import 'package:movie_zone/domain/tv/usecases/search_tv_shows_usecase.dart';
 import 'package:movie_zone/domain/tv/usecases/tv_usecase.dart';
 
 final serviceLocator = GetIt.instance;
@@ -77,5 +79,9 @@ void setupServiceLocator() {
   );
   serviceLocator.registerSingleton<GetTvShowKeywordsUsecase>(
     GetTvShowKeywordsUsecase(),
+  );
+  serviceLocator.registerSingleton<SearchMoviesUsecase>(SearchMoviesUsecase());
+  serviceLocator.registerSingleton<SearchTVShowsUsecase>(
+    SearchTVShowsUsecase(),
   );
 }

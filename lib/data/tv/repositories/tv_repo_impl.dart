@@ -98,4 +98,20 @@ class TvRepoImpl extends TvRepo {
       },
     );
   }
+
+  @override
+  Future<Either> searchTVShows(String query) async {
+    var returnedData = await serviceLocator<TvRepo>().searchTVShows(query);
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        var tvShows = List.from(
+          data['content'],
+        ).map((item) => TvMapper.toEntity(TvModel.fromJson(item))).toList();
+        return Right(tvShows);
+      },
+    );
+  }
 }

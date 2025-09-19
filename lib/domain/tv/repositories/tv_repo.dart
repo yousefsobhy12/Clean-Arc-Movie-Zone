@@ -6,4 +6,5 @@ abstract class TvRepo {
   Future<Either> getRecommendedTvShows(int tvShowId);
   Future<Either> getSimilarTvShows(int tvShowId);
   Future<Either> getTvShowKeywords(int tvShowId);
+  Future<Either> searchTVShows(String query);
 }

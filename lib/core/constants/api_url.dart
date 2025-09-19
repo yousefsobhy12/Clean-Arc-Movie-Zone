@@ -21,4 +21,7 @@ class ApiUrl {
 
   // For TV shows Trailer
   static const String tvShows = '${apiVersion}tv/';
+
+  // Search Url
+  static const String search = '${apiVersion}search/';
 }
