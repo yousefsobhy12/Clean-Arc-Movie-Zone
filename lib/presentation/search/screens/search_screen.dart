@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_zone/common/widgets/app_bar/app_bar.dart';
-import 'package:movie_zone/presentation/search/cubit/selected_option_cubit.dart';
+import 'package:movie_zone/presentation/search/cubits/selected_option/selected_option_cubit.dart';
 import 'package:movie_zone/presentation/search/widgets/custom_search_text_field.dart';
-import 'package:movie_zone/presentation/search/widgets/selectable_option.dart';
+import 'package:movie_zone/presentation/search/widgets/search_options.dart';
 
 // ignore: must_be_immutable
 class SearchScreen extends StatelessWidget {
@@ -22,31 +22,9 @@ class SearchScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Column(
                 children: [
-                  CustomSearchTextField(
-                    hintText: 'Search...',
-                    controller: searchController,
-                  ),
+                  CustomSearchTextField(controller: searchController),
                   SizedBox(height: 12),
-                  Row(
-                    spacing: 20,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SelectableOption(
-                        title: 'Movie',
-                        isSelected: option.state == SearchType.movie,
-                        onTap: () {
-                          option.selectMovie();
-                        },
-                      ),
-                      SelectableOption(
-                        title: 'TV',
-                        isSelected: option.state == SearchType.tv,
-                        onTap: () {
-                          option.selectTv();
-                        },
-                      ),
-                    ],
-                  ),
+                  SearchOptions(option: option),
                 ],
               ),
             );

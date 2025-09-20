@@ -2,24 +2,16 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomSearchTextField extends StatelessWidget {
-  CustomSearchTextField({
-    super.key,
-    required this.hintText,
-    this.suffixIcon,
-    required this.controller,
-    this.validator,
-  });
-  final String hintText;
+  CustomSearchTextField({super.key, this.suffixIcon, required this.controller});
   IconButton? suffixIcon;
   final TextEditingController controller;
-  String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        hintText: hintText,
+        hintText: 'Search...',
         hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
         suffixIcon: suffixIcon ?? Icon(Icons.abc, color: Colors.transparent),
         suffixIconColor: Colors.grey,
