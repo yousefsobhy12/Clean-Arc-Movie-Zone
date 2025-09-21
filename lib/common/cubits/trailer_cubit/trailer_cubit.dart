@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_zone/core/entities/trailer_entitiy.dart';
 import 'package:movie_zone/core/usecases/usecase.dart';
@@ -15,12 +17,27 @@ class TrailerCubit extends Cubit<TrailerState> {
         emit(TrailerFailed(errorMessage: error));
       },
       (data) async {
-        TrailerEntity trailerEntity = data;
-        YoutubePlayerController controller = YoutubePlayerController(
-          initialVideoId: trailerEntity.key!,
-          flags: YoutubePlayerFlags(loop: false, autoPlay: false, mute: true),
-        );
-        emit(TrailerLoaded(youtubePlayerController: controller));
+        try {
+          TrailerEntity trailerEntity = data;
+          if (trailerEntity.key == null) {
+            log('Invalid trailer key');
+            emit(TrailerFailed(errorMessage: 'Invalid trailer key'));
+            return;
+          }
+
+          YoutubePlayerController controller = YoutubePlayerController(
+            initialVideoId: trailerEntity.key!,
+            flags: const YoutubePlayerFlags(
+              loop: false,
+              autoPlay: false,
+              mute: true,
+            ),
+          );
+          emit(TrailerLoaded(youtubePlayerController: controller));
+        } catch (e) {
+          log('Error loading trailer');
+          emit(TrailerFailed(errorMessage: 'Error loading trailer'));
+        }
       },
     );
   }

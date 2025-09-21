@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:movie_zone/core/constants/api_url.dart';
@@ -27,12 +29,13 @@ class TvServiceImpl extends TvService {
   @override
   Future<Either> getTVShowTrailer(int tvShowId) async {
     try {
+      log('====== TV Show ID: $tvShowId ======');
       var response = await serviceLocator<DioClient>().get(
-        '${ApiUrl.tvShowUrl}$tvShowId/trailers',
+        '${ApiUrl.tvShowUrl}$tvShowId/trailer',
       );
       return Right(response.data);
-    } on DioException catch (error) {
-      return Left(error.response!.data['message']);
+    } catch (error) {
+      return Left(error.toString());
     }
   }
 
@@ -80,7 +83,7 @@ class TvServiceImpl extends TvService {
       );
       return Right(response.data);
     } on DioException catch (error) {
-      return Left(error.response!.data['content']);
+      return Left(error.response!.data['message']);
     }
   }
 }

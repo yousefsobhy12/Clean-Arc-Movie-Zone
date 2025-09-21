@@ -27,7 +27,7 @@ class MovieEntity {
   final String? mediaType;
   final String? originalLanguage;
   final List<int> genreIds;
-  final double? popularity;
+  final num? popularity;
   final DateTime? releaseDate;
   final bool? video;
   final double? voteAverage;

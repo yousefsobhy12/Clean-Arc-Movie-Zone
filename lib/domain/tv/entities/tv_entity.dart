@@ -24,7 +24,7 @@ class TvEntity {
   final String? originalLanguage;
   final String? originalName;
   final String? overview;
-  final double? popularity;
+  final num? popularity;
   final String posterPath;
   final DateTime? firstAirDate;
   final String? name;

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:movie_zone/common/helper/mapper/keywords_mapper.dart';
 import 'package:movie_zone/common/helper/mapper/trailer_mapper.dart';
@@ -69,12 +71,35 @@ class TvRepoImpl extends TvRepo {
     );
     return returnedData.fold(
       (error) {
+        log('======== TV Show Trailer Error: $error ========');
         return Left(error);
       },
       (data) {
-        return Right(
-          TrailerMapper.toEntity(TrailerModel.fromJson(data['trailers'][0])),
-        );
+        if (data == null) {
+          return const Left('No trailer data available');
+        }
+
+        if (data['trailers'] == null || (data['trailers'] as List).isEmpty) {
+          return const Left('No trailers found');
+        }
+
+        try {
+          final trailers = data['trailers'] as List;
+          final trailer = trailers.firstWhere(
+            (trailer) =>
+                trailer['type'] == 'Trailer' && trailer['official'] == true,
+            orElse: () => trailers.first,
+          );
+
+          var trailerEntity = TrailerMapper.toEntity(
+            TrailerModel.fromJson(trailer),
+          );
+          return Right(trailerEntity);
+        } catch (e, stackTrace) {
+          log('======== Parse Error: $e ========');
+          log('======== Stack Trace: $stackTrace ========');
+          return const Left('Error parsing trailer data');
+        }
       },
     );
   }
@@ -101,7 +126,7 @@ class TvRepoImpl extends TvRepo {
 
   @override
   Future<Either> searchTVShows(String query) async {
-    var returnedData = await serviceLocator<TvRepo>().searchTVShows(query);
+    var returnedData = await serviceLocator<TvService>().searchTVShows(query);
     return returnedData.fold(
       (error) {
         return Left(error);
@@ -110,6 +135,7 @@ class TvRepoImpl extends TvRepo {
         var tvShows = List.from(
           data['content'],
         ).map((item) => TvMapper.toEntity(TvModel.fromJson(item))).toList();
+
         return Right(tvShows);
       },
     );

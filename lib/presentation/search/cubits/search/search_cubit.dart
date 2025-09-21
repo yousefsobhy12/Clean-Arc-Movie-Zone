@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_zone/domain/movie/entities/movie.dart';
 import 'package:movie_zone/domain/movie/usecases/search_movies_usecase.dart';
@@ -10,6 +11,7 @@ part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit() : super(SearchInitial());
+  TextEditingController controller = TextEditingController();
   void search(String query, SearchType searchType) {
     if (query.isNotEmpty) {
       emit(SearchLoading());
