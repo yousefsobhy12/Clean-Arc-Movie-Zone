@@ -51,7 +51,7 @@ class TvCard extends StatelessWidget {
                 ),
 
                 errorWidget: (context, url, error) =>
-                    Center(child: Icon(Icons.error)),
+                    const Center(child: Icon(Icons.error)),
               ),
             ),
             Expanded(

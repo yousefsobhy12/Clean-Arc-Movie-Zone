@@ -14,7 +14,7 @@ class MovieSliderCard extends StatelessWidget {
         AppNavigator.push(context, MovieWatchScreen(movieEntity: movieEntity));
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 16),
+        margin: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: Colors.grey,

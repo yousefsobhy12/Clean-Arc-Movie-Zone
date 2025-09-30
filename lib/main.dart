@@ -20,14 +20,14 @@ class MovieZone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
     );
     return BlocProvider(
       create: (context) => SplashCubit()..appStarted(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppTheme.appTheme,
-        home: SplashScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

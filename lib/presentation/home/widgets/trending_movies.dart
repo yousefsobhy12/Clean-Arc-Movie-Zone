@@ -27,7 +27,7 @@ class _TrendingMoviesState extends State<TrendingMovies> {
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
           if (state is DataLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (state is DataLoaded) {
             return Column(
@@ -44,8 +44,10 @@ class _TrendingMoviesState extends State<TrendingMovies> {
                     enableInfiniteScroll: false,
                     reverse: false,
                     autoPlay: false,
-                    autoPlayInterval: Duration(seconds: 3),
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayInterval: const Duration(seconds: 3),
+                    autoPlayAnimationDuration: const Duration(
+                      milliseconds: 800,
+                    ),
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.3,
@@ -60,7 +62,7 @@ class _TrendingMoviesState extends State<TrendingMovies> {
                 AnimatedSmoothIndicator(
                   activeIndex: activeIndex,
                   count: state.data.length,
-                  effect: ExpandingDotsEffect(activeDotColor: Colors.red),
+                  effect: const ExpandingDotsEffect(activeDotColor: Colors.red),
                 ),
               ],
             );

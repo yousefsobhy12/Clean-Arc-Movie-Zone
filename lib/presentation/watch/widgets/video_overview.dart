@@ -9,7 +9,7 @@ class VideoOverview extends StatelessWidget {
       spacing: 6,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Overview',
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),

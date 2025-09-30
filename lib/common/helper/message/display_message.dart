@@ -31,7 +31,7 @@ class DisplayMessage {
           if (isSignUp) {
             AppNavigator.pushReplacement(context, SignInScreen());
           } else {
-            AppNavigator.pushReplacement(context, HomeScreen());
+            AppNavigator.pushReplacement(context, const HomeScreen());
           }
         }
       },

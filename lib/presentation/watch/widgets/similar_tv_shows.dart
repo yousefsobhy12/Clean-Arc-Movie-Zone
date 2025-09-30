@@ -20,14 +20,14 @@ class SimilarTvShows extends StatelessWidget {
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
           if (state is DataLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (state is DataLoaded) {
             return Column(
               spacing: 8,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Similar',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
@@ -39,7 +39,7 @@ class SimilarTvShows extends StatelessWidget {
                       return TvCard(tvEntity: state.data[index]);
                     },
                     separatorBuilder: (context, index) {
-                      return SizedBox(width: 20);
+                      return const SizedBox(width: 20);
                     },
                     itemCount: state.data.length,
                   ),

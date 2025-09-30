@@ -23,21 +23,21 @@ class MovieWatchScreen extends StatelessWidget {
         hideBack: false,
         action: IconButton(
           onPressed: () {
-            AppNavigator.pushReplacement(context, HomeScreen());
+            AppNavigator.pushReplacement(context, const HomeScreen());
           },
           // ignore: deprecated_member_use
           icon: SvgPicture.asset(AppVectors.homeIcon, color: Colors.grey),
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MoviesTrailerWidget(id: movieEntity.id!),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             VideoTitle(title: movieEntity.title!),
-            SizedBox(height: 6),
+            const SizedBox(height: 6),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -47,13 +47,13 @@ class MovieWatchScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             VideoOverview(overview: movieEntity.overview!),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             RecommendedMovies(movieId: movieEntity.id!),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             SimilarMovies(movieId: movieEntity.id!),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
           ],
         ),
       ),

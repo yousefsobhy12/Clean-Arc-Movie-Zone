@@ -22,31 +22,31 @@ class TvWatchScreen extends StatelessWidget {
       appBar: BasicAppbar(
         action: IconButton(
           onPressed: () {
-            AppNavigator.pushReplacement(context, HomeScreen());
+            AppNavigator.pushReplacement(context, const HomeScreen());
           },
           // ignore: deprecated_member_use
           icon: SvgPicture.asset(AppVectors.homeIcon, color: Colors.grey),
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TvShowsTrailer(id: tvEntity.id!),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             VideoTitle(title: tvEntity.name!),
-            SizedBox(height: 6),
+            const SizedBox(height: 6),
             TvShowKeywords(id: tvEntity.id!),
-            SizedBox(height: 6),
+            const SizedBox(height: 6),
             VideoVoteAvg(voteAvg: tvEntity.voteAverage!.toStringAsFixed(1)),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             VideoOverview(overview: tvEntity.overview!),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             RecommendedTvShows(tvEntityId: tvEntity.id!),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             SimilarTvShows(tvShowId: tvEntity.id!),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
           ],
         ),
       ),

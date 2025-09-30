@@ -19,7 +19,7 @@ class TvShowKeywords extends StatelessWidget {
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
           if (state is DataLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (state is DataLoaded) {
             List<KeywordsEntity> keywords = state.data;

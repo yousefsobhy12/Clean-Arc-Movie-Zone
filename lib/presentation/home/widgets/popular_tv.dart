@@ -17,7 +17,7 @@ class PopularTvShows extends StatelessWidget {
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
         builder: (context, state) {
           if (state is DataLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (state is DataLoaded) {
             return SizedBox(
@@ -31,7 +31,7 @@ class PopularTvShows extends StatelessWidget {
                   );
                 },
                 separatorBuilder: (context, index) {
-                  return SizedBox(width: 20);
+                  return const SizedBox(width: 20);
                 },
                 itemCount: state.data.length,
               ),

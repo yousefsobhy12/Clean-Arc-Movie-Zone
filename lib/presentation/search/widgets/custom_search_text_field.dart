@@ -20,8 +20,9 @@ class CustomSearchTextField extends StatelessWidget {
       },
       decoration: InputDecoration(
         hintText: 'Search...',
-        hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
-        suffixIcon: suffixIcon ?? Icon(Icons.abc, color: Colors.transparent),
+        hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+        suffixIcon:
+            suffixIcon ?? const Icon(Icons.abc, color: Colors.transparent),
         suffixIconColor: Colors.grey,
         enabledBorder: outlineInputBorder(borderColor: Colors.transparent),
         focusedBorder: outlineInputBorder(borderColor: Colors.transparent),

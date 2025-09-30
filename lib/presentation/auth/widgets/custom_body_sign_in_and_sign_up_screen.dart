@@ -29,7 +29,7 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
           image: AssetImage(AppImages.splashBackground),
@@ -40,7 +40,7 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.25),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: AppColors.background,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(40),
@@ -48,7 +48,7 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color.fromARGB(124, 0, 0, 0),
+                    color: Color.fromARGB(124, 0, 0, 0),
                     offset: Offset(0, 10),
                     spreadRadius: 70,
                     blurRadius: 20,
@@ -67,22 +67,22 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
                       Text(
                         headerAndButtonTitle,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       CustomTextFormField(hintText: 'Email', controller: email),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       CustomTextFormField(
                         hintText: 'Password',
                         controller: password,
                       ),
-                      SizedBox(height: 50),
+                      const SizedBox(height: 50),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(vertical: 20),
+                          padding: const EdgeInsets.symmetric(vertical: 20),
                         ),
                         onPressed: onPressed,
                         child: Text(headerAndButtonTitle),
@@ -99,7 +99,7 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
                               TextSpan(text: textSpan1),
                               TextSpan(
                                 text: textSpan2,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: AppColors.primary,
                                   fontWeight: FontWeight.bold,
                                 ),

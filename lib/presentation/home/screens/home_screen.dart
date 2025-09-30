@@ -20,16 +20,17 @@ class HomeScreen extends StatelessWidget {
         title: SvgPicture.asset(AppVectors.logo),
         action: IconButton(
           onPressed: () {
-            AppNavigator.push(context, SearchScreen());
+            AppNavigator.push(context, const SearchScreen());
           },
           icon: SvgPicture.asset(
             height: 22,
             AppVectors.searchIcon,
+            // ignore: deprecated_member_use
             color: Colors.grey,
           ),
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

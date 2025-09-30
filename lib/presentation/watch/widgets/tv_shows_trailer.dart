@@ -17,7 +17,7 @@ class TvShowsTrailer extends StatelessWidget {
       child: BlocBuilder<TrailerCubit, TrailerState>(
         builder: (context, state) {
           if (state is TrailerLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (state is TrailerLoaded) {
             return ClipRRect(
@@ -29,7 +29,7 @@ class TvShowsTrailer extends StatelessWidget {
             );
           }
           if (state is TrailerFailed) {
-            Center(child: CircularProgressIndicator());
+            const Center(child: CircularProgressIndicator());
           }
           return Container();
         },

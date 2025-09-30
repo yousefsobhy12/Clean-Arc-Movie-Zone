@@ -7,10 +7,10 @@ class VideoReleaseDate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.calendar_month_outlined, color: Colors.grey),
+        const Icon(Icons.calendar_month_outlined, color: Colors.grey),
         Text(
           ' ${releaseDate.day}/${releaseDate.month}/${releaseDate.year}',
-          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
         ),
       ],
     );

@@ -25,7 +25,10 @@ class SelectableOption extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
-          child: Text(title, style: TextStyle(fontWeight: FontWeight.w500)),
+          child: Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.w500),
+          ),
         ),
       ),
     );

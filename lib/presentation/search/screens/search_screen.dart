@@ -12,7 +12,7 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BasicAppbar(hideBack: false),
+      appBar: const BasicAppbar(hideBack: false),
       body: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => SelectedOptionCubit()),
@@ -25,10 +25,10 @@ class SearchScreen extends StatelessWidget {
               child: Column(
                 children: [
                   CustomSearchTextField(),
-                  SizedBox(height: 12),
-                  SearchOptions(),
-                  SizedBox(height: 12),
-                  Expanded(child: SearchContent()),
+                  const SizedBox(height: 12),
+                  const SearchOptions(),
+                  const SizedBox(height: 12),
+                  const Expanded(child: SearchContent()),
                 ],
               ),
             );

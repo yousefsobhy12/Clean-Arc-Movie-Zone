@@ -8,7 +8,7 @@ class VideoVoteAvg extends StatelessWidget {
     return Row(
       spacing: 4,
       children: [
-        Icon(Icons.star_rounded, color: Colors.amber),
+        const Icon(Icons.star_rounded, color: Colors.amber),
         Text(voteAvg),
       ],
     );
