@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_zone/presentation/auth/screens/sign_in_screen.dart';
+import 'package:movie_zone/presentation/main/screens/main_screen.dart';
 
 import '../../../common/helper/navigation/app_navigation.dart';
 import '../../../core/configs/assets/app_images.dart';
-import '../../home/screens/home_screen.dart';
 import '../cubit/splash_cubit.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -20,7 +20,7 @@ class SplashScreen extends StatelessWidget {
           }
 
           if (state is Authenticated) {
-            AppNavigator.pushReplacement(context, const HomeScreen());
+            AppNavigator.pushReplacement(context, const MainScreen());
           }
         },
         child: Stack(
