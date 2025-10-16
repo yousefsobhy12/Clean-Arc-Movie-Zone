@@ -11,6 +11,9 @@ class CustomSearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onTapUpOutside: (event) {
+        FocusScope.of(context).unfocus();
+      },
       controller: context.read<SearchCubit>().controller,
       onChanged: (value) {
         context.read<SearchCubit>().search(
