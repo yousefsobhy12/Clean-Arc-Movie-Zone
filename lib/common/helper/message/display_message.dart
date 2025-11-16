@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_zone/common/helper/navigation/app_navigation.dart';
 import 'package:movie_zone/presentation/auth/screens/sign_in_screen.dart';
-import 'package:movie_zone/presentation/home/screens/home_screen.dart';
+import 'package:movie_zone/presentation/main/screens/main_screen.dart';
 
 class DisplayMessage {
   static void handleAuthResult<L, R>(
@@ -31,7 +31,7 @@ class DisplayMessage {
           if (isSignUp) {
             AppNavigator.pushReplacement(context, SignInScreen());
           } else {
-            AppNavigator.pushReplacement(context, const HomeScreen());
+            AppNavigator.pushReplacement(context, const MainScreen());
           }
         }
       },

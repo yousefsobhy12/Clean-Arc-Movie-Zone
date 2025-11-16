@@ -15,18 +15,54 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   int selectedIndex = 0;
+  late AnimationController _animationController;
+  late Animation<double> _fadeAnimation;
+
   final screens = const [
     HomeScreen(),
     SearchScreen(),
     WishlistScreen(),
     ProfileScreen(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _handleTabChange(int index) {
+    if (index != selectedIndex) {
+      _animationController.reset();
+      setState(() {
+        selectedIndex = index;
+      });
+      _animationController.forward();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[selectedIndex],
+      body: FadeTransition(
+        opacity: _fadeAnimation,
+        child: screens[selectedIndex],
+      ),
       bottomNavigationBar: FlashyTabBar(
         backgroundColor: AppColors.background,
         selectedIndex: selectedIndex,
@@ -35,7 +71,6 @@ class _MainScreenState extends State<MainScreen> {
             activeColor: AppColors.primary,
             icon: SvgPicture.asset(
               AppVectors.homeIcon,
-              // ignore: deprecated_member_use
               color: Colors.white,
             ),
             title: const Text('Home'),
@@ -44,7 +79,6 @@ class _MainScreenState extends State<MainScreen> {
             activeColor: AppColors.primary,
             icon: SvgPicture.asset(
               AppVectors.searchIcon,
-              // ignore: deprecated_member_use
               color: Colors.white,
             ),
             title: const Text('Search'),
@@ -53,7 +87,6 @@ class _MainScreenState extends State<MainScreen> {
             activeColor: AppColors.primary,
             icon: SvgPicture.asset(
               AppVectors.wishlistIcon,
-              // ignore: deprecated_member_use
               color: Colors.white,
             ),
             title: const Text('Wishlist'),
@@ -61,18 +94,13 @@ class _MainScreenState extends State<MainScreen> {
           FlashyTabBarItem(
             activeColor: AppColors.primary,
             icon: SvgPicture.asset(
-             AppVectors.profileIcon,
-              // ignore: deprecated_member_use
+              AppVectors.profileIcon,
               color: Colors.white,
             ),
             title: const Text('Profile'),
           ),
         ],
-        onItemSelected: (value) {
-          setState(() {
-            selectedIndex = value;
-          });
-        },
+        onItemSelected: _handleTabChange,
       ),
     );
   }
