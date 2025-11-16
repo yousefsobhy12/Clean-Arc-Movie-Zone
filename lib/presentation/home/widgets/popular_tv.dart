@@ -20,20 +20,20 @@ class PopularTvShows extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           if (state is DataLoaded) {
-            return SizedBox(
-              height: 300,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 12),
-                    child: TvCard(tvEntity: state.data[index]),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return const SizedBox(width: 20);
-                },
-                itemCount: state.data.length,
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: SizedBox(
+                height: 300,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return TvCard(tvEntity: state.data[index]);
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(width: 35);
+                  },
+                  itemCount: state.data.length,
+                ),
               ),
             );
           }
