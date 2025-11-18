@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movie_zone/common/widgets/default_text_form_field.dart';
 import 'package:movie_zone/core/configs/assets/app_images.dart';
 import 'package:movie_zone/core/configs/theme/app_colors.dart';
-import 'package:movie_zone/presentation/auth/widgets/custom_text_form_field.dart';
 
 // ignore: must_be_immutable
-class CustomBodySignAndSignUpScreen extends StatelessWidget {
+class CustomBodySignAndSignUpScreen extends StatefulWidget {
   CustomBodySignAndSignUpScreen({
     super.key,
     this.textSpanOnTap,
@@ -23,6 +23,15 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
   final String textSpan2;
   void Function()? textSpanOnTap;
   void Function()? onPressed;
+
+  @override
+  State<CustomBodySignAndSignUpScreen> createState() =>
+      _CustomBodySignAndSignUpScreenState();
+}
+
+class _CustomBodySignAndSignUpScreenState
+    extends State<CustomBodySignAndSignUpScreen> {
+  bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +74,7 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
                         height: MediaQuery.sizeOf(context).height * 0.09,
                       ),
                       Text(
-                        headerAndButtonTitle,
+                        widget.headerAndButtonTitle,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 30,
@@ -73,32 +82,53 @@ class CustomBodySignAndSignUpScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 40),
-                      CustomTextFormField(hintText: 'Email', controller: email),
-                      const SizedBox(height: 20),
-                      CustomTextFormField(
-                        hintText: 'Password',
-                        controller: password,
+                      // CustomTextFormField(hintText: 'Email', controller: email),
+                      DefaultTextFormField(
+                        hint: 'Email',
+                        controller: widget.email,
+                        fillColor: const Color(0xff2B2B2B),
                       ),
-                      const SizedBox(height: 50),
+                      const SizedBox(height: 20),
+                      DefaultTextFormField(
+                        hint: 'Password',
+                        controller: widget.password,
+                        fillColor: const Color(0xff2B2B2B),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isVisible = !isVisible;
+                            });
+                          },
+                          icon: Icon(
+                            isVisible
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                            color: AppColors.primary,
+                          ),
+                        ),
+                        password: true,
+                        isVisible: isVisible,
+                      ),
+                      const SizedBox(height: 30),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 20),
                         ),
-                        onPressed: onPressed,
-                        child: Text(headerAndButtonTitle),
+                        onPressed: widget.onPressed,
+                        child: Text(widget.headerAndButtonTitle),
                       ),
                       SizedBox(
                         height: MediaQuery.sizeOf(context).height * 0.22,
                       ),
                       InkWell(
-                        onTap: textSpanOnTap,
+                        onTap: widget.textSpanOnTap,
                         child: Text.rich(
                           textAlign: TextAlign.center,
                           TextSpan(
                             children: [
-                              TextSpan(text: textSpan1),
+                              TextSpan(text: widget.textSpan1),
                               TextSpan(
-                                text: textSpan2,
+                                text: widget.textSpan2,
                                 style: const TextStyle(
                                   color: AppColors.primary,
                                   fontWeight: FontWeight.bold,

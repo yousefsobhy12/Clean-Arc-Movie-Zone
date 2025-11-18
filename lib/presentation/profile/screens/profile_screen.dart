@@ -34,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
                       height: 20,
                       AppVectors.logoutIcon,
                       // ignore: deprecated_member_use
-                      color: Colors.white,
+                      color: Colors.red,
                     ),
                   ],
                 ),

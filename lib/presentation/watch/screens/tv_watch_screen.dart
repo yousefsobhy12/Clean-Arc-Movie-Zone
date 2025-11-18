@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movie_zone/common/helper/navigation/app_navigation.dart';
-import 'package:movie_zone/common/widgets/app_bar/app_bar.dart';
+import 'package:movie_zone/common/widgets/app_bar.dart';
 import 'package:movie_zone/core/configs/assets/app_vectors.dart';
 import 'package:movie_zone/domain/tv/entities/tv_entity.dart';
 import 'package:movie_zone/presentation/home/screens/home_screen.dart';

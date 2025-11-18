@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_zone/core/configs/theme/app_theme.dart';
 import 'package:movie_zone/core/prefs/app_prefs.dart';
 import 'package:movie_zone/presentation/splash/cubit/splash_cubit.dart';
@@ -19,16 +20,21 @@ class MovieZone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-    );
-    return BlocProvider(
-      create: (context) => SplashCubit()..appStarted(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.appTheme,
-        home: const SplashScreen(),
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(428, 926),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return BlocProvider(
+          create: (context) => SplashCubit()..appStarted(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.appTheme,
+            home: child,
+          ),
+        );
+      },
+      child: const SplashScreen(),
     );
   }
 }
