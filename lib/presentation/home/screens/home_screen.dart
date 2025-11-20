@@ -23,6 +23,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             CategoryTitle(title: 'Trending 🔥'),
             TrendingMovies(),
+            SizedBox(height: 16),
             CategoryTitle(title: 'Now Playing'),
             SizedBox(height: 16),
             NowPlayingMovies(),

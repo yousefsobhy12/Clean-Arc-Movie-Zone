@@ -4,6 +4,7 @@ import 'app_colors.dart';
 
 class AppTheme {
   static final appTheme = ThemeData(
+    fontFamily: 'nunito',
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: AppColors.background,
     brightness: Brightness.dark,
