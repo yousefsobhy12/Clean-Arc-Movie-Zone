@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_zone/core/prefs/app_prefs.dart';
 import 'package:movie_zone/data/auth/models/signin_req_params.dart';
 import 'package:movie_zone/data/auth/models/signup_req_params.dart';
@@ -50,5 +51,10 @@ class AuthRepoImpl extends AuthRepo {
     } else {
       return true;
     }
+  }
+
+  @override
+  Future<UserCredential> firebaseLogin() async {
+    return await FirebaseAuth.instance.signInAnonymously();
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_zone/presentation/home/cubits/trending_cubit/trending_cubit.dart';
 import 'package:movie_zone/presentation/search/cubits/search/search_cubit.dart';
 import 'package:movie_zone/presentation/search/cubits/selected_option/selected_option_cubit.dart';
 import 'package:movie_zone/presentation/search/widgets/custom_search_text_field.dart';
@@ -17,7 +16,6 @@ class SearchScreen extends StatelessWidget {
           providers: [
             BlocProvider(create: (context) => SelectedOptionCubit()),
             BlocProvider(create: (context) => SearchCubit()),
-            BlocProvider(create: (context) => TrendingCubit()..getTrendingMovies(),)
           ],
           child: BlocBuilder<SelectedOptionCubit, SearchType>(
             builder: (context, state) {

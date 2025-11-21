@@ -69,34 +69,22 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
         items: [
           FlashyTabBarItem(
             activeColor: AppColors.primary,
-            icon: SvgPicture.asset(
-              AppVectors.homeIcon,
-              color: Colors.white,
-            ),
+            icon: SvgPicture.asset(AppVectors.homeIcon, color: Colors.white),
             title: const Text('Home'),
           ),
           FlashyTabBarItem(
             activeColor: AppColors.primary,
-            icon: SvgPicture.asset(
-              AppVectors.searchIcon,
-              color: Colors.white,
-            ),
+            icon: SvgPicture.asset(AppVectors.searchIcon, color: Colors.white),
             title: const Text('Search'),
           ),
           FlashyTabBarItem(
             activeColor: AppColors.primary,
-            icon: SvgPicture.asset(
-              AppVectors.wishlistIcon,
-              color: Colors.white,
-            ),
-            title: const Text('Wishlist'),
+            icon: SvgPicture.asset(AppVectors.favIcon, color: Colors.white),
+            title: const Text('Favourite'),
           ),
           FlashyTabBarItem(
             activeColor: AppColors.primary,
-            icon: SvgPicture.asset(
-              AppVectors.profileIcon,
-              color: Colors.white,
-            ),
+            icon: SvgPicture.asset(AppVectors.profileIcon, color: Colors.white),
             title: const Text('Profile'),
           ),
         ],

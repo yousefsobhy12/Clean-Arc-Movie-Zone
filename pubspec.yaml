@@ -44,6 +44,9 @@ dependencies:
   flashy_tab_bar2: ^0.0.10
   animations: ^2.1.1
   flutter_screenutil: ^5.9.3
+  firebase_core: ^4.2.1
+  firebase_auth: ^6.1.2
+  cloud_firestore: ^6.1.0
 
 dev_dependencies:
   flutter_test:
