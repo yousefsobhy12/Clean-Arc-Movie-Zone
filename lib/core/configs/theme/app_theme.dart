@@ -34,7 +34,7 @@ class AppTheme {
         backgroundColor: AppColors.primary,
         elevation: 0,
         textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
     ),
   );
