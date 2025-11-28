@@ -43,7 +43,7 @@ class MovieWatchScreen extends StatelessWidget {
               children: [
                 VideoReleaseDate(releaseDate: movieEntity.releaseDate!),
                 VideoVoteAvg(
-                  voteAvg: movieEntity.voteAverage!.toStringAsFixed(1),
+                  voteAvg: movieEntity.voteAverage!.toStringAsFixed(1), voteCount: movieEntity.voteCount.toString(),
                 ),
               ],
             ),

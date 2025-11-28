@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_zone/core/configs/assets/app_vectors.dart';
 import 'package:movie_zone/core/configs/theme/app_colors.dart';
+import 'package:movie_zone/presentation/watch_list/screens/watchlist_screen.dart';
 import 'package:movie_zone/presentation/home/screens/home_screen.dart';
 import 'package:movie_zone/presentation/profile/screens/profile_screen.dart';
 import 'package:movie_zone/presentation/search/screens/search_screen.dart';
-import 'package:movie_zone/presentation/wishlist/screens/wishlist_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -23,7 +23,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   final screens = const [
     HomeScreen(),
     SearchScreen(),
-    WishlistScreen(),
+    Watchlistcreen(),
     ProfileScreen(),
   ];
 
@@ -79,8 +79,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
           ),
           FlashyTabBarItem(
             activeColor: AppColors.primary,
-            icon: SvgPicture.asset(AppVectors.favIcon, color: Colors.white),
-            title: const Text('Favourite'),
+            icon: SvgPicture.asset(AppVectors.bookmarkIcon, color: Colors.white),
+            title: const Text('Watch list'),
           ),
           FlashyTabBarItem(
             activeColor: AppColors.primary,

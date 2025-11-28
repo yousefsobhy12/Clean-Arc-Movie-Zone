@@ -29,7 +29,7 @@ class DisplayMessage {
           onSuccess(data);
         } else {
           if (isSignUp) {
-            AppNavigator.pushReplacement(context, SignInScreen());
+            AppNavigator.pushReplacement(context, const SignInScreen());
           } else {
             AppNavigator.pushReplacement(context, const MainScreen());
           }

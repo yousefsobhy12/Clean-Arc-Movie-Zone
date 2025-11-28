@@ -39,7 +39,10 @@ class TvWatchScreen extends StatelessWidget {
             const SizedBox(height: 6),
             TvShowKeywords(id: tvEntity.id!),
             const SizedBox(height: 6),
-            VideoVoteAvg(voteAvg: tvEntity.voteAverage!.toStringAsFixed(1)),
+            VideoVoteAvg(
+              voteAvg: tvEntity.voteAverage!.toStringAsFixed(1),
+              voteCount: tvEntity.voteCount.toString(),
+            ),
             const SizedBox(height: 16),
             VideoOverview(overview: tvEntity.overview!),
             const SizedBox(height: 16),
