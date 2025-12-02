@@ -1,10 +1,10 @@
-class WatchlistEntity {
+class WatchListEntity {
   final String movieId;
   final String title;
   final String posterPath;
   final num rate;
 
-  const WatchlistEntity({
+  const WatchListEntity({
     required this.movieId,
     required this.title,
     required this.posterPath,

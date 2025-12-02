@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:movie_zone/data/favourites/models/watchlist_model.dart';
 import 'package:movie_zone/data/favourites/sources/watchlist_data_source.dart';
-import 'package:movie_zone/domain/favourites/entities/watchlist_entity.dart';
-import 'package:movie_zone/domain/favourites/repositories/watchlist_repo.dart';
+import 'package:movie_zone/domain/watchlist/entities/watchlist_entity.dart';
+import 'package:movie_zone/domain/watchlist/repositories/watchlist_repo.dart';
 
 class WatchlistRepoImpl implements WatchlistRepo {
   final WatchlistRemoteDataSource remote;
@@ -10,7 +10,7 @@ class WatchlistRepoImpl implements WatchlistRepo {
   WatchlistRepoImpl(this.remote);
 
   @override
-  Future<void> addWatchlist(WatchlistEntity fav) async {
+  Future<void> addWatchlist(WatchListEntity fav) async {
     final model = WatchlistModel(
       movieId: fav.movieId,
       title: fav.title,
@@ -33,12 +33,12 @@ class WatchlistRepoImpl implements WatchlistRepo {
   }
 
   @override
-  Future<List<WatchlistEntity>> getAllWatchlist() async {
+  Future<List<WatchListEntity>> getAllWatchlist() async {
     final list = await remote.getAllwatchlist();
 
     return list
         .map(
-          (m) => WatchlistEntity(
+          (m) => WatchListEntity(
             movieId: m.movieId,
             title: m.title,
             posterPath:
@@ -51,11 +51,11 @@ class WatchlistRepoImpl implements WatchlistRepo {
   }
 
   @override
-  Stream<List<WatchlistEntity>> watchWatchlist() {
+  Stream<List<WatchListEntity>> watchWatchlist() {
     return remote.watchwatchlist().map(
       (list) => list
           .map(
-            (m) => WatchlistEntity(
+            (m) => WatchListEntity(
               movieId: m.movieId,
               title: m.title,
               posterPath:

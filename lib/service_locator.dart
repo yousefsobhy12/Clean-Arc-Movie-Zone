@@ -12,12 +12,12 @@ import 'package:movie_zone/domain/auth/repositories/auth_repo.dart';
 import 'package:movie_zone/domain/auth/usecases/is_logged_in_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signin_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signup_usecase.dart';
-import 'package:movie_zone/domain/favourites/repositories/watchlist_repo.dart';
-import 'package:movie_zone/domain/favourites/usecases/add_watchlist_usecase.dart';
-import 'package:movie_zone/domain/favourites/usecases/get_all_watchlist_usecase.dart';
-import 'package:movie_zone/domain/favourites/usecases/is_watchlist_usecase.dart';
-import 'package:movie_zone/domain/favourites/usecases/remove_watchlist_usecase.dart';
-import 'package:movie_zone/domain/favourites/usecases/watch_watchlist_usecase.dart';
+import 'package:movie_zone/domain/watchlist/repositories/watchlist_repo.dart';
+import 'package:movie_zone/domain/watchlist/usecases/add_watchlist_usecase.dart';
+import 'package:movie_zone/domain/watchlist/usecases/get_all_watchlist_usecase.dart';
+import 'package:movie_zone/domain/watchlist/usecases/is_watchlist_usecase.dart';
+import 'package:movie_zone/domain/watchlist/usecases/remove_watchlist_usecase.dart';
+import 'package:movie_zone/domain/watchlist/usecases/watch_watchlist_usecase.dart';
 import 'package:movie_zone/domain/movie/repositories/movie_repo.dart';
 import 'package:movie_zone/domain/movie/usecases/get_movie_trailer.dart';
 import 'package:movie_zone/domain/movie/usecases/get_now_playing_movies.dart';
@@ -106,18 +106,18 @@ void setupServiceLocator() {
 
   // watchlist Usecases
   serviceLocator.registerLazySingleton(
-    () => AddWatchlistUsecase(serviceLocator()),
+    () => AddWatchListUsecase(serviceLocator()),
   );
   serviceLocator.registerLazySingleton(
-    () => RemoveWatchlistUsecase(serviceLocator()),
+    () => RemoveWatchListUsecase(serviceLocator()),
   );
   serviceLocator.registerLazySingleton(
-    () => IsWatchlistUsecase(serviceLocator()),
+    () => IsWatchListUsecase(serviceLocator()),
   );
   serviceLocator.registerLazySingleton(
-    () => GetAllWatchlistUsecase(serviceLocator()),
+    () => GetAllWatchListUsecase(serviceLocator()),
   );
   serviceLocator.registerLazySingleton(
-    () => WatchWatchlistUsecase(serviceLocator()),
+    () => WatchWatchListUsecase(serviceLocator()),
   );
 }
