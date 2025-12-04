@@ -10,7 +10,7 @@ class CategoryTitle extends StatelessWidget {
       padding: const EdgeInsets.only(left: 12),
       child: Text(
         title,
-        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w900),
       ),
     );
   }

@@ -2,6 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:movie_zone/core/network/dio_client.dart';
 import 'package:movie_zone/data/auth/repositories/auth_repo_impl.dart';
 import 'package:movie_zone/data/auth/sources/auth_service.dart';
+import 'package:movie_zone/data/favourites/repositories/watchlist_repo_impl.dart';
+import 'package:movie_zone/data/favourites/sources/watchlist_data_source.dart';
 import 'package:movie_zone/data/movie/repositories/movie_repo_impl.dart';
 import 'package:movie_zone/data/movie/sources/movie_service.dart';
 import 'package:movie_zone/data/tv/repositories/tv_repo_impl.dart';
@@ -10,6 +12,12 @@ import 'package:movie_zone/domain/auth/repositories/auth_repo.dart';
 import 'package:movie_zone/domain/auth/usecases/is_logged_in_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signin_usecase.dart';
 import 'package:movie_zone/domain/auth/usecases/signup_usecase.dart';
+import 'package:movie_zone/domain/watchlist/repositories/watchlist_repo.dart';
+import 'package:movie_zone/domain/watchlist/usecases/add_watchlist_usecase.dart';
+import 'package:movie_zone/domain/watchlist/usecases/get_all_watchlist_usecase.dart';
+import 'package:movie_zone/domain/watchlist/usecases/is_watchlist_usecase.dart';
+import 'package:movie_zone/domain/watchlist/usecases/remove_watchlist_usecase.dart';
+import 'package:movie_zone/domain/watchlist/usecases/watch_watchlist_usecase.dart';
 import 'package:movie_zone/domain/movie/repositories/movie_repo.dart';
 import 'package:movie_zone/domain/movie/usecases/get_movie_trailer.dart';
 import 'package:movie_zone/domain/movie/usecases/get_now_playing_movies.dart';
@@ -83,5 +91,33 @@ void setupServiceLocator() {
   serviceLocator.registerSingleton<SearchMoviesUsecase>(SearchMoviesUsecase());
   serviceLocator.registerSingleton<SearchTVShowsUsecase>(
     SearchTVShowsUsecase(),
+  );
+
+  // Firebase
+  // watchlist Data Source
+  serviceLocator.registerLazySingleton<WatchlistRemoteDataSource>(
+    () => WatchlistRemoteDataSourceImpl(),
+  );
+
+  // watchlist Repository
+  serviceLocator.registerLazySingleton<WatchlistRepo>(
+    () => WatchlistRepoImpl(serviceLocator()),
+  );
+
+  // watchlist Usecases
+  serviceLocator.registerLazySingleton(
+    () => AddWatchListUsecase(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => RemoveWatchListUsecase(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => IsWatchListUsecase(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => GetAllWatchListUsecase(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => WatchWatchListUsecase(serviceLocator()),
   );
 }

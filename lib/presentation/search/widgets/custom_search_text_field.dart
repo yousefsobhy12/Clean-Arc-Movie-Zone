@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_zone/common/widgets/default_text_form_field.dart';
 import 'package:movie_zone/presentation/search/cubits/search/search_cubit.dart';
 import 'package:movie_zone/presentation/search/cubits/selected_option/selected_option_cubit.dart';
 
@@ -10,10 +11,8 @@ class CustomSearchTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onTapUpOutside: (event) {
-        FocusScope.of(context).unfocus();
-      },
+    return DefaultTextFormField(
+      fillColor: const Color(0xff2B2B2B),
       controller: context.read<SearchCubit>().controller,
       onChanged: (value) {
         context.read<SearchCubit>().search(
@@ -21,22 +20,7 @@ class CustomSearchTextField extends StatelessWidget {
           context.read<SelectedOptionCubit>().state,
         );
       },
-      decoration: InputDecoration(
-        hintText: 'Search...',
-        hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
-        suffixIcon:
-            suffixIcon ?? const Icon(Icons.abc, color: Colors.transparent),
-        suffixIconColor: Colors.grey,
-        enabledBorder: outlineInputBorder(borderColor: Colors.transparent),
-        focusedBorder: outlineInputBorder(borderColor: Colors.transparent),
-      ),
-    );
-  }
-
-  OutlineInputBorder outlineInputBorder({required Color borderColor}) {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(color: borderColor),
+      hint: 'Search...',
     );
   }
 }

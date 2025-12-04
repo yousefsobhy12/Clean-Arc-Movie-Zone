@@ -70,11 +70,11 @@ class MovieCard extends StatelessWidget {
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         const Icon(Icons.star, size: 16, color: Colors.amber),
                         Text(
-                          ' ${movieEntity.voteAverage!.toStringAsFixed(1)}',
+                          ' ${movieEntity.voteAverage!.toStringAsFixed(1)} (${movieEntity.voteCount})',
                           style: const TextStyle(fontSize: 10),
                         ),
                       ],

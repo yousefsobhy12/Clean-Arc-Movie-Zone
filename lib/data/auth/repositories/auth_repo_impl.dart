@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:movie_zone/core/errors/firebase_errors.dart';
 import 'package:movie_zone/core/prefs/app_prefs.dart';
 import 'package:movie_zone/data/auth/models/signin_req_params.dart';
 import 'package:movie_zone/data/auth/models/signup_req_params.dart';
 import 'package:movie_zone/data/auth/sources/auth_service.dart';
+import 'package:movie_zone/domain/auth/entities/user_entity.dart';
 import 'package:movie_zone/domain/auth/repositories/auth_repo.dart';
 import 'package:movie_zone/service_locator.dart';
 
@@ -50,5 +52,26 @@ class AuthRepoImpl extends AuthRepo {
     } else {
       return true;
     }
+  }
+
+  @override
+  Future<Either<FirebaseError, UserEntity>> firebaseSignin({
+    required String email,
+    required String password,
+  }) async {
+    return await authApiService.firebaseSignin(email, password);
+  }
+
+  @override
+  Future<Either<FirebaseError, UserEntity>> firebaseSignup({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    return await authApiService.firebaseSignup(
+      name: name,
+      email: email,
+      password: password,
+    );
   }
 }

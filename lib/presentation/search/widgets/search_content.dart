@@ -15,6 +15,9 @@ class SearchContent extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         if (state is MoviesLoaded) {
+          if (state.movies.isEmpty) {
+            return const Center(child: Text('No movies found'));
+          }
           return GridView.builder(
             shrinkWrap: true,
             itemCount: state.movies.length,
@@ -30,6 +33,9 @@ class SearchContent extends StatelessWidget {
           );
         }
         if (state is TVShowsLoaded) {
+          if (state.tvShows.isEmpty) {
+            return const Center(child: Text('No TV shows found'));
+          }
           return GridView.builder(
             shrinkWrap: true,
             itemCount: state.tvShows.length,
@@ -47,7 +53,7 @@ class SearchContent extends StatelessWidget {
         if (state is SearchFailure) {
           return Center(child: Text(state.errorMessage));
         }
-        return Container();
+        return const Center(child: Text('Search for movies or TV shows'));
       },
     );
   }

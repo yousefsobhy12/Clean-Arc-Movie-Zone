@@ -9,16 +9,13 @@ class SearchOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final option = context.read<SelectedOptionCubit>();
-    // final search = context.read<SearchCubit>();
     return Row(
       spacing: 20,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SelectableOption(
           title: 'Movie',
-          isSelected:
-              context.read<SelectedOptionCubit>().state == SearchType.movie,
+          searchType: SearchType.movie,
           onTap: () {
             context.read<SelectedOptionCubit>().selectMovie();
             context.read<SearchCubit>().search(
@@ -29,8 +26,7 @@ class SearchOptions extends StatelessWidget {
         ),
         SelectableOption(
           title: 'TV',
-          isSelected:
-              context.read<SelectedOptionCubit>().state == SearchType.tv,
+          searchType: SearchType.tv,
           onTap: () {
             context.read<SelectedOptionCubit>().selectTv();
             context.read<SearchCubit>().search(
